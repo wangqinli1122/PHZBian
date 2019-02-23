@@ -5,8 +5,8 @@
       <span class="header-login-name">登录</span>
     </div>
     <div class="header-search">
-      <input type="text" class="header-search-input">
-      <span class="iconfont back-icon">&#xe6aa;</span>
+      <input type="text" class="header-search-input"  v-show="showHearderSearch">
+      <span class="iconfont back-icon"  v-show="showHearderSearch">&#xe6aa;</span>
     </div>
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
@@ -24,7 +24,8 @@ export default {
   name: 'HomeHeader',
   data () {
     return {
-      showList: false
+      showList: false,
+      showHearderSearch: false
     }
   },
   methods: {
