@@ -28,7 +28,7 @@ export default {
     margin-top: 1.08rem
     text-align: center
     .logo
-      width: 2.75rem
+      width: 2.95rem
       margin-bottom: .45rem
     .search-box
       margin: 0 .2rem
