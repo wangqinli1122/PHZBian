@@ -3,9 +3,9 @@
     <div class="home-swiper">
       <swiper :options="swiperOption">
         <!-- slides -->
-        <swiper-slide><img class="swiper-img" src="@/assets/banner1.jpg"></swiper-slide>
-        <swiper-slide><img class="swiper-img" src="@/assets/logo.png"></swiper-slide>
-        <swiper-slide><img class="swiper-img" src="@/assets/banner1.jpg"></swiper-slide>
+        <swiper-slide><img class="swiper-img" src="@/assets/images/banner1.jpg"></swiper-slide>
+        <swiper-slide><img class="swiper-img" src="@/assets/images/logo.png"></swiper-slide>
+        <swiper-slide><img class="swiper-img" src="@/assets/images/banner1.jpg"></swiper-slide>
       </swiper>
     </div>
     <!-- Optional controls -->

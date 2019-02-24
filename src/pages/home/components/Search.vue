@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <img class="logo" src="@/assets/logo.png" >
+    <img class="logo" src="@/assets/images/logo.png" >
     <div class="search-box">
       <input type="text" class="search-text" placeholder="请输入商铺或商品名称">
       <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
