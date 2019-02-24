@@ -5,8 +5,8 @@
       <span class="header-login-name">登录</span>
     </div>
     <div class="header-search">
-      <input type="text" class="header-search-input"  v-show="showHearderSearch">
-      <span class="iconfont back-icon"  v-show="showHearderSearch">&#xe6aa;</span>
+      <input type="text" class="header-search-input" v-show="isShow" :style="opacityStyle">
+      <span class="iconfont back-icon" v-show="isShow" :style="opacityStyle">&#xe6aa;</span>
     </div>
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
@@ -25,13 +25,30 @@ export default {
   data () {
     return {
       showList: false,
-      showHearderSearch: false
+      isShow: false,
+      opacityStyle: {
+        opacity: 0
+      }
     }
   },
   methods: {
     handleClickShowList () {
       this.showList === false ? this.showList = true : this.showList = false
+    },
+    handleScroll () {
+      const top = document.documentElement.scrollTop
+      if (top > 85) {
+        let opacity = (top - 85) / (165 - 85)
+        opacity = opacity > 1 ? 1 : opacity
+        this.opacityStyle = { opacity }
+        this.isShow = true
+      } else {
+        this.isShow = false
+      }
     }
+  },
+  activated () {
+    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -49,6 +66,8 @@ export default {
     top: 0
     left: 0
     right: 0
+    z-index: 15
+    background: #fff
     .header-login
       width: 1.1rem
       padding-left: .2rem

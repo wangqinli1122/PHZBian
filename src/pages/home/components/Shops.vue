@@ -5,15 +5,15 @@
       周边商家
       <span>——</span>
     </h3>
-    <ul class="shops-list border-bottom">
-      <li class="shop">
+    <ul class="shops-list">
+      <li class="shop border-bottom" v-for="item of list" :key="item.id">
         <div class="shop-img-box">
-          <img src="@/assets/images/shop-img1.jpg" alt="" class="shop-img">
+          <img :src="item.img" class="shop-img">
         </div>
         <div class="shop-info">
-          <h4 class="shop-title">老凤祥</h4>
-          <p class="shop-content">锦江区东大街紫东楼段156号附31号</p>
-          <div class="shop-range"><span class="iconfont">&#xe655;</span>1.2km</div>
+          <h4 class="shop-title">{{item.name}}</h4>
+          <p class="shop-content">{{item.address}}</p>
+          <div class="shop-range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
         </div>
         <span class="iconfont shop-right">&#xe60a;</span>
       </li>
@@ -23,7 +23,10 @@
 
 <script>
 export default {
-  name: 'HomeShops'
+  name: 'HomeShops',
+  props: {
+    list: Array
+  }
 }
 </script>
 
