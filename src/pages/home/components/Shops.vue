@@ -11,7 +11,10 @@
           <img :src="item.img" class="shop-img">
         </div>
         <div class="shop-info">
-          <h4 class="shop-title">{{item.name}}</h4>
+          <div class="shop-title-box">
+            <h4 class="shop-title">{{item.name}}</h4>
+            <span class="iconfont back-icon">&#xe60f;</span>
+          </div>
           <p class="shop-content">{{item.address}}</p>
           <div class="shop-range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
         </div>
@@ -59,10 +62,16 @@ export default {
       .shop-info
         flex: 1
         min-width: 0
-        .shop-title
-          line-height: .4rem
-          font-size: .32rem
-          ellipsis()
+        .shop-title-box
+          display: flex
+          .shop-title
+            flex: 1
+            line-height: .4rem
+            font-size: .32rem
+            ellipsis()
+          .back-icon
+            float:right
+            color: $grayColor
         .shop-content
           line-height: .5rem
           color: $grayColor
