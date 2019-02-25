@@ -6,7 +6,7 @@
       <span>——</span>
     </h3>
     <ul class="shops-list">
-      <li class="shop border-bottom" v-for="item of list" :key="item.id">
+      <router-link tag="li" to="/shops" class="shop border-bottom" v-for="item of list" :key="item.id">
         <div class="shop-img-box">
           <img :src="item.img" class="shop-img">
         </div>
@@ -19,7 +19,7 @@
           <div class="shop-range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
         </div>
         <span class="iconfont shop-right">&#xe60a;</span>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
