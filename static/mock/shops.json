@@ -1,0 +1,47 @@
+{
+  "ret": true,
+  "data": {
+    "shopName": "周大福珠宝店",
+    "shopAddress": "四川省成都市锦江区某某街道",
+    "shopRange": "1.2km",
+    "shopTel": "13511112222",
+    "shopImg": "static/img/shop-banner.png",
+    "goodsList": [{
+      "id": "001",
+      "name": "外套男士夹克",
+      "desc": "外套男士夹克春季韩版潮流2019新款春秋衣服男装春装休闲棒球服男",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "price": "128.00",
+      "see": "25",
+      "img": "static/img/shop-img1.jpg"
+    },{
+      "id": "002",
+      "name": "外套男士夹克春季韩版潮流",
+      "desc": "外套男士夹克春季韩版潮流2019新款春秋衣服男装春装休闲棒球服男",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "price": "399.00",
+      "see": "25",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "003",
+      "name": "Xiaomi/小米 Redmi 红米Note 7 ",
+      "desc": "Xiaomi/小米 Redmi 红米Note 7 新品骁龙660双摄4800万智能商务拍照千元水滴全面屏手机官方旗舰店正品note7",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "price": "1899.00",
+      "see": "25",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "004",
+      "name": "荣耀V20 华为HONOR/荣耀",
+      "desc": "荣耀V20 华为HONOR/荣耀 荣耀V20拍照游戏手机全视屏智能旗舰手机官方旗舰店",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "price": "2999.00",
+      "see": "25",
+      "img": "static/img/shop-img1.jpg"
+    }]
+  }
+}
