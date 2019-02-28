@@ -7,7 +7,7 @@
         <h4 class="title">{{this.address}}</h4>
         <p class="desc">距离我{{this.range}}</p>
       </div>
-      <span class="iconfont content-right border-left">&#xe60f;</span>
+      <a class="iconfont content-right border-left" href="tel:18688888888">&#xe60f;</a>
     </div>
     <div class="cutoff border-bottom"></div>
   </div>

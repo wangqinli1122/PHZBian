@@ -12,6 +12,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+  #app
+    max-width: 640px
+    margin: 0 auto
 </style>

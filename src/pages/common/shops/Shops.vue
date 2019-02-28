@@ -1,20 +1,20 @@
 <template>
-  <ul class="shops">
-    <router-link tag="li" to="/shops" class="shop border-bottom" v-for="item of list" :key="item.id">
+  <div class="shops">
+    <router-link to="/shops" class="shop border-bottom" v-for="item of list" :key="item.id">
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>
       <div class="info">
         <div class="title-box">
           <h4 class="title">{{item.name}}</h4>
-          <span class="iconfont back-icon">&#xe60f;</span>
+          <a class="iconfont back-icon" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a>
         </div>
         <p class="content">{{item.address}}</p>
         <div class="range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
       </div>
       <span class="iconfont details">&#xe60a;</span>
     </router-link>
-  </ul>
+  </div>
 </template>
 
 <script>
@@ -22,6 +22,11 @@ export default {
   name: 'HomeShops',
   props: {
     list: Array
+  },
+  methods: {
+    hanldeClickA (e) {
+      e.stopPropagation()
+    }
   }
 }
 </script>
@@ -56,9 +61,9 @@ export default {
             flex: 1
             line-height: .4rem
             font-size: .32rem
+            color: #333
             ellipsis()
           .back-icon
-            float:right
             color: $grayColor
         .content
           height: .5rem

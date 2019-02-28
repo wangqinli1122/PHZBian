@@ -12,7 +12,7 @@
     </div>
     <ul class="header-float" v-show="showList">
       <li class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
-      <li class="list border-bottom"><span class="iconfont list-icon">&#xe626;</span>分享</li>
+      <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <li class="list"><span class="iconfont list-icon">&#xe627;</span>首页</li>
     </ul>
   </div>
@@ -23,13 +23,21 @@ export default {
   name: 'ShopsHeader',
   data () {
     return {
-      showList: false
+      showList: false,
+      isShowShare: false
     }
   },
   methods: {
     handleClickShowList () {
       this.showList === false ? this.showList = true : this.showList = false
+    },
+    showShare () {
+      this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
+      this.$emit('showShare', this.isShowShare)
     }
+  },
+  mounted () {
+    this.$emit('showShare', this.isShowShare)
   }
 }
 </script>
@@ -40,6 +48,8 @@ export default {
     &:before
       border-color: #fff
   .header
+    max-width: 640px
+    margin:0 auto
     height: $headerHeight
     line-height: $headerHeight
     display: flex

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header></home-header>
+    <home-header @showShare="getShowShare"></home-header>
     <home-search></home-search>
     <home-swiper></home-swiper>
     <h3 class="title border-bottom">
@@ -8,7 +8,8 @@
       周边商家
       <span>——</span>
     </h3>
-    <home-shops :list="shops"></home-shops>
+    <common-shops :list="shops"></common-shops>
+    <common-share :isShowShare="showShareValue"></common-share>
   </div>
 </template>
 
@@ -16,20 +17,23 @@
 import HomeHeader from './components/Header'
 import HomeSearch from './components/Search'
 import HomeSwiper from './components/Swiper'
-import HomeShops from '@/pages/common/shops/Shops'
+import CommonShops from '@/pages/common/shops/Shops'
+import CommonShare from '@/pages/common/share/Share'
 import axios from 'axios'
 export default {
   name: 'Home',
   data () {
     return {
-      shops: []
+      shops: [],
+      showShareValue: ''
     }
   },
   components: {
     HomeHeader,
     HomeSearch,
     HomeSwiper,
-    HomeShops
+    CommonShops,
+    CommonShare
   },
   methods: {
     getHomeInfo () {
@@ -41,6 +45,9 @@ export default {
         const data = res.data
         this.shops = data.merchantList
       }
+    },
+    getShowShare (value) {
+      this.showShareValue = value
     }
   },
   mounted () {

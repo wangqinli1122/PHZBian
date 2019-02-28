@@ -12,8 +12,8 @@
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
     <ul class="header-float" v-show="showList">
-      <li class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
-      <li class="list border-bottom"><span class="iconfont list-icon">&#xe626;</span>分享</li>
+      <li class="list border-bottom" @click="addFavorite"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
+      <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <li class="list"><span class="iconfont list-icon">&#xe627;</span>首页</li>
     </ul>
   </div>
@@ -25,6 +25,7 @@ export default {
   data () {
     return {
       showList: false,
+      isShowShare: false,
       isShow: false,
       opacityStyle: {
         opacity: 0
@@ -45,7 +46,32 @@ export default {
       } else {
         this.isShow = false
       }
+    },
+    addFavorite () {
+      var url = window.location
+      var title = document.title
+      var ua = navigator.userAgent.toLowerCase()
+      if (ua.indexOf('msie 8') > -1) {
+        external.AddToFavoritesBar(url, title, '')
+      } else {
+        try {
+          window.external.addFavorite(url, title)
+        } catch (e) {
+          try {
+            window.sidebar.addPanel(title, url, '')
+          } catch (e) {
+            alert('加入收藏失败，请使用Ctrl+D进行添加')
+          }
+        }
+      }
+    },
+    showShare () {
+      this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
+      this.$emit('showShare', this.isShowShare)
     }
+  },
+  mounted () {
+    this.$emit('showShare', this.isShowShare)
   },
   activated () {
     window.addEventListener('scroll', this.handleScroll)
@@ -59,6 +85,8 @@ export default {
     &:before
       border-color: #fff
   .header
+    max-width: 640px
+    margin: 0 auto
     height: $headerHeight
     line-height: $headerHeight
     display: flex

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <shops-header></shops-header>
+    <shops-header @showShare="getShowShare"></shops-header>
     <shops-banner :img="shopImg"></shops-banner>
     <shops-info
       :name="shopName"
@@ -10,6 +10,7 @@
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
     <shops-goods :list="goods"></shops-goods>
+    <common-share :isShowShare="showShareValue"></common-share>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import ShopsHeader from './components/Header'
 import ShopsBanner from './components/Banner'
 import ShopsInfo from './components/Info'
 import ShopsGoods from './components/Goods'
+import CommonShare from '@/pages/common/share/Share'
 import axios from 'axios'
 export default {
   name: 'Shops',
@@ -28,14 +30,16 @@ export default {
       shopRange: '',
       shopTel: '',
       shopImg: '',
-      goods: []
+      goods: [],
+      showShareValue: ''
     }
   },
   components: {
     ShopsHeader,
     ShopsBanner,
     ShopsInfo,
-    ShopsGoods
+    ShopsGoods,
+    CommonShare
   },
   methods: {
     getHomeInfo () {
@@ -52,6 +56,9 @@ export default {
         this.shopTel = data.shopTel
         this.shopImg = data.shopImg
       }
+    },
+    getShowShare (value) {
+      this.showShareValue = value
     }
   },
   mounted () {
