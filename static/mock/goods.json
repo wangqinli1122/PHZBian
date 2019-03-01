@@ -1,0 +1,14 @@
+{
+  "ret": true,
+  "data": {
+    "id": "001",
+    "shopName": "周大福珠宝店",
+    "shopAddress": "四川省成都市锦江区某某街道",
+    "shopRange": "1.2km",
+    "shopTel": "13511112222",
+    "goodsname": "外套男士夹克",
+    "goodsdesc": "外套男士夹克春季韩版潮流2019新款春秋衣服男装春装休闲棒球服男",
+    "goodsprice": "128.00",
+    "goodsimg": "static/img/shop-img1.jpg"
+  }
+}

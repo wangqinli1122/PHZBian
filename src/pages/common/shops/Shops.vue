@@ -1,6 +1,6 @@
 <template>
   <div class="shops">
-    <router-link to="/shops" class="shop border-bottom" v-for="item of list" :key="item.id">
+    <router-link :to="'/shops/'+ item.id" class="shop border-bottom" v-for="item of list" :key="item.id">
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>

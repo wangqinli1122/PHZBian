@@ -1,27 +1,35 @@
 <template>
   <div class="info">
-    <h3 class="name">{{this.name}}</h3>
+    <div class="range">
+      <span class="range-left">¥</span>215.00
+      <div class="range-right">
+        <span class="iconfont back-icon">&#xe655;</span>1.2km
+      </div>
+    </div>
+    <h3 class="name">外套男士夹克</h3>
+    <p class="goodsDesc">外套男士夹克春季韩版潮流2019新款春秋衣服男装春装休闲棒球服男</p>
+    <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
       <span class="iconfont content-left border-right">&#xe655;</span>
       <div class="center">
-        <h4 class="title">{{this.address}}</h4>
-        <p class="desc">距离我{{this.range}}</p>
+        <h4 class="title">周大福珠宝店</h4>
+        <p class="desc">四川省成都市锦江区某某街道</p>
       </div>
       <a class="iconfont content-right border-left" href="tel:18688888888">&#xe60f;</a>
     </div>
     <div class="cutoff border-bottom"></div>
+    <h3 class="wrap-title border-bottom">
+      <span>——</span>
+      商品详情
+      <span>——</span>
+    </h3>
+    <div class="container"><img src="static/img/goods-img1.jpg"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ShopsInfo',
-  props: {
-    name: String,
-    address: String,
-    range: String,
-    tel: String
-  }
+  name: 'ShopsInfo'
 }
 </script>
 
@@ -40,10 +48,27 @@ export default {
   .border-bottom
     &::after
       border-color: #ccc
+  .range
+    color: red
+    font-size: .36rem
+    font-weight: bold
+    padding: .2rem
+    .range-left
+      font-size: .28rem
+    .range-right
+      float: right
+      color: $grayColor
+      font-size: .25rem
+      font-weight: normal
+      .back-icon
+        padding-right: .05rem
   .name
     font-size: .32rem
-    line-height: .8rem
-    padding-left: .2rem
+    padding: .1rem .2rem 0
+  .goodsDesc
+    line-height: .36rem
+    padding: .2rem
+    color: $grayColor
   .content
     display: flex
     .content-left
@@ -74,4 +99,13 @@ export default {
   .cutoff
     height: .3rem
     background: #eee
+  .wrap-title
+    padding-top: .2rem
+    padding-bottom: .2rem
+    color: $grayColor
+    text-align: center
+  .container
+    width: 100%
+    img
+      width: 100%
 </style>
