@@ -11,12 +11,16 @@
         </div>
       </div>
       <div class="search-b" v-show="active">
-        <input type="text" :class="inputClass" placeholder="请输入商品名称">
-        <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
+        <input type="text" v-model="goodContent" :class="inputClass" placeholder="请输入商品名称">
+        <router-link :to="'/goodsSearch/'+this.goodContent">
+          <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
+        </router-link>
       </div>
       <div class="search-b" v-show="!active">
-        <input type="text" :class="inputClass" placeholder="请输入店铺名称">
-        <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
+        <input type="text" v-model="content" :class="inputClass" placeholder="请输入店铺名称">
+        <router-link :to="'/shopSearch/'+this.content">
+          <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
+        </router-link>
       </div>
     </div>
     <ul class="search-common">
@@ -32,6 +36,8 @@ export default {
   name: 'HomeSearch',
   data () {
     return {
+      content: '',
+      goodContent: '',
       selectClass: 'search_selected',
       inputClass: 'search-text',
       active: true

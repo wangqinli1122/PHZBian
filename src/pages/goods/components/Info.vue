@@ -65,6 +65,7 @@ export default {
   .name
     font-size: .32rem
     padding: .1rem .2rem 0
+    ellipsis()
   .goodsDesc
     line-height: .36rem
     padding: .2rem

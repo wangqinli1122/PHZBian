@@ -1,0 +1,55 @@
+{
+  "ret": true,
+  "data": {
+    "merchantList": [{
+      "id": "001",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13588888888",
+      "img": "static/img/shop-img1.jpg"
+    },{
+      "id": "002",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "003",
+      "name": "京东电器超市京东电器超市京东电器超市",
+      "address": "锦江区东大街紫东楼紫东楼紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13566666666",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "004",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "img": "static/img/shop-img1.jpg"
+    },{
+      "id": "005",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "006",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "img": "static/img/banner1.jpg"
+    },{
+      "id": "007",
+      "name": "京东电器超市",
+      "address": "锦江区东大街紫东楼段156号附31号",
+      "range": "1.2km",
+      "tel": "13511112222",
+      "img": "static/img/shop-img1.jpg"
+    }]
+  }
+}

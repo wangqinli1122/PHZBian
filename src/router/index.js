@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/Home'
 import Shops from '@/pages/shops/Shops'
-import Goods from '@/pages/goods/goods'
+import Goods from '@/pages/goods/Goods'
+import ShopSearch from '@/pages/shopSearch/ShopSearch'
+import GoodsSearch from '@/pages/goodsSearch/GoodsSearch'
 
 Vue.use(Router)
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/goods/:id',
       name: 'Goods',
       component: Goods
+    },
+    {
+      path: '/shopSearch/:name',
+      name: 'ShopSearch',
+      component: ShopSearch
+    },
+    {
+      path: '/goodsSearch/:name',
+      name: 'GoodsSearch',
+      component: GoodsSearch
     }
   ],
   scrollBehavior (to, from, savePosition) {
