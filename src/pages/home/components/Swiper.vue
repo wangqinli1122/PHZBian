@@ -1,11 +1,9 @@
 <template>
   <div class="swiper">
     <div class="home-swiper">
-      <swiper :options="swiperOption">
+      <swiper :options="swiperOption" v-if="list.length">
         <!-- slides -->
-        <swiper-slide><img class="swiper-img" src="@/assets/images/banner1.jpg"></swiper-slide>
-        <swiper-slide><img class="swiper-img" src="@/assets/images/logo.png"></swiper-slide>
-        <swiper-slide><img class="swiper-img" src="@/assets/images/banner1.jpg"></swiper-slide>
+        <swiper-slide v-for="item of list" :key="item.id"><img class="swiper-img" :src="item.imgUrl"></swiper-slide>
       </swiper>
     </div>
     <!-- Optional controls -->
@@ -16,6 +14,9 @@
 <script>
 export default {
   name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {
