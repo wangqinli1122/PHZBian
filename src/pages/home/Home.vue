@@ -29,12 +29,7 @@ export default {
       shops: [],
       swiperList: [],
       showShareValue: '',
-      addr: {
-        pro: '1',
-        city: '2',
-        dis: '3'
-      },
-      center: [],
+      addr: [],
       page: 1
     }
   },
@@ -48,14 +43,13 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/home.json', {
+      axios.get('/api/getHomeList', {
         params: {
-          lng: this.center.lng,
-          lat: this.center.lat,
+          lng: this.addr.lng,
+          lat: this.addr.lat,
           pro: this.addr.pro,
           city: this.addr.city,
-          dis: this.addr.dis,
-          page: this.page
+          dis: this.addr.dis
         }
       }).then(this.getHomeInfoSucc)
     },
@@ -72,23 +66,14 @@ export default {
       this.showShareValue = value
     }
   },
-  created () {
-    let selfAddr = this
-    this.bus.$on('getAddr', function (msg) {
-      return function (msg) {
-        selfAddr.addr = msg
-        selfAddr.addr.pro = selfAddr.addr.pro.slice(0, selfAddr.addr.pro.length - 1)
-        selfAddr.addr.city = selfAddr.addr.city.slice(0, selfAddr.addr.city.length - 1)
-      } 
-    })
-    console.log(selfAddr.addr)
-  },
   mounted () {
-    this.bus.$on('getCenter', (msg) => {
-      this.center = msg
-      console.log(this.center)
+    this.bus.$on('getAddr', (msg) => {
+      this.addr = msg
+      this.addr = msg
+      this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
+      this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
+      this.getHomeInfo()
     })
-    this.getHomeInfo()
   }
 }
 </script>
