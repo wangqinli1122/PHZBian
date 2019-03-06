@@ -29,8 +29,14 @@ export default {
       shops: [],
       swiperList: [],
       showShareValue: '',
-      addr: [],
-      page: 1
+      addr: {
+        pro: '四川',
+        city: '成都',
+        dis: '龙泉驿区',
+        lng: 116.40387397,
+        lat: 39.91488908
+      },
+      page: 0
     }
   },
   components: {
@@ -43,13 +49,14 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/getHomeList', {
+      axios.get('/api/index.php/home/index/getHomeList', {
         params: {
           lng: this.addr.lng,
           lat: this.addr.lat,
           pro: this.addr.pro,
           city: this.addr.city,
-          dis: this.addr.dis
+          dis: this.addr.dis,
+          page: this.page
         }
       }).then(this.getHomeInfoSucc)
     },
@@ -67,12 +74,12 @@ export default {
     }
   },
   mounted () {
+    this.getHomeInfo()
     this.bus.$on('getAddr', (msg) => {
       this.addr = msg
       this.addr = msg
       this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
       this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
-      this.getHomeInfo()
     })
   }
 }

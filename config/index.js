@@ -14,7 +14,7 @@ module.exports = {
       "/api": {
         target: 'http://souzhoub.com',
         pathRewrite: {
-            '^/api': '/home/index'
+            '^/api': '/'
         }
       }
     },

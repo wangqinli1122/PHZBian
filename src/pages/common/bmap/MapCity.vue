@@ -9,9 +9,9 @@ export default {
   data () {
     return {
       addr: {
-        pro: '',
-        city: '',
-        dis: '',
+        pro: '四川',
+        city: '成都',
+        dis: '龙泉驿区',
         lng: 116.40387397,
         lat: 39.91488908
       }
