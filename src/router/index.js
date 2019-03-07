@@ -26,12 +26,12 @@ export default new Router({
       component: Goods
     },
     {
-      path: '/shopSearch/:name',
+      path: '/shopSearch/:name/:lat/:lng/:page',
       name: 'ShopSearch',
       component: ShopSearch
     },
     {
-      path: '/goodsSearch/:name',
+      path: '/goodsSearch/:name/:lat/:lng/:page',
       name: 'GoodsSearch',
       component: GoodsSearch
     }

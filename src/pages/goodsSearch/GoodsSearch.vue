@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     getGoodsList () {
-      axios.get('/api/goodsList.json').then(this.getGoodsListSucc)
+      axios.get('/api/index.php/home/index/searchMers').then(this.getGoodsListSucc)
     },
     getGoodsListSucc (res) {
       res = res.data
@@ -42,6 +42,11 @@ export default {
     }
   },
   mounted () {
+    console.log(1)
+    this.getGoodsList()
+  },
+  activated () {
+    console.log(2)
     this.getGoodsList()
   }
 }

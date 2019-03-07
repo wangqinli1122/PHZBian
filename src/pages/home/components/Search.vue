@@ -12,21 +12,18 @@
       </div>
       <div class="search-b" v-show="active">
         <input type="text" v-model="goodContent" :class="inputClass" placeholder="请输入商品名称">
-        <router-link :to="'/goodsSearch/'+this.goodContent">
-          <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
-        </router-link>
+        <button class="search-button" @click="handleClickGoods"><span class="iconfont back-icon">&#xe6aa;</span></button>
       </div>
       <div class="search-b" v-show="!active">
         <input type="text" v-model="content" :class="inputClass" placeholder="请输入店铺名称">
-        <router-link :to="'/shopSearch/'+this.content">
-          <button class="search-button"><span class="iconfont back-icon">&#xe6aa;</span></button>
-        </router-link>
+        <button class="search-button" @click="handleClickShop"><span class="iconfont back-icon">&#xe6aa;</span></button>
       </div>
     </div>
-    <ul class="search-common">
-      <li class="common border-bottom">手机</li>
-      <li class="common border-bottom">电脑</li>
-      <li class="common border-bottom">奶茶</li>
+    <ul class="search-common" v-show="active">
+      <li class="common border-bottom" v-for="item of hotGoodsList" :key="item.id">{{item.msg}}</li>
+    </ul>
+    <ul class="search-common" v-show="!active">
+      <li class="common border-bottom" v-for="item of hotShopsList" :key="item.id">{{item.msg}}</li>
     </ul>
   </div>
 </template>
@@ -34,8 +31,14 @@
 <script>
 export default {
   name: 'HomeSearch',
+  props: {
+    hotShopsList: Array,
+    hotGoodsList: Array
+  },
   data () {
     return {
+      goodsName: '',
+      shopName: '',
       content: '',
       goodContent: '',
       selectClass: 'search_selected',
@@ -59,6 +62,32 @@ export default {
     handleClickSelect (obj) {
       if (obj.target.getAttribute('class').indexOf('active') > 0) {
         this.active === true ? this.active = false : this.active = true
+      }
+    },
+    handleClickShop () {
+      if (this.content !== '') {
+        this.$router.push({
+          name: 'ShopSearch',
+          params: {
+            name: this.content,
+            lng: 104,
+            lat: 30,
+            page: 1
+          }
+        })
+      }
+    },
+    handleClickGoods () {
+      if (this.goodContent !== '') {
+        this.$router.push({
+          name: 'GoodsSearch',
+          params: {
+            name: this.goodContent,
+            lng: 104,
+            lat: 30,
+            page: 1
+          }
+        })
       }
     }
   }

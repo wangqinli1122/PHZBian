@@ -43,7 +43,11 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/shops.json').then(this.getHomeInfoSucc)
+      axios.get('/api/index.php/home/index/getShopInfo', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
       res = res.data
@@ -62,6 +66,9 @@ export default {
     }
   },
   mounted () {
+    this.getHomeInfo()
+  },
+  activated () {
     this.getHomeInfo()
   }
 }

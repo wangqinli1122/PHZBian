@@ -1,7 +1,7 @@
 <template>
   <div>
     <home-header @showShare="getShowShare"></home-header>
-    <home-search></home-search>
+    <home-search :hotShopsList="hot_shops" :hotGoodsList="hot_mers"></home-search>
     <home-swiper :list="swiperList"></home-swiper>
     <h3 class="title border-bottom">
       <span>——</span>
@@ -26,8 +26,11 @@ export default {
   name: 'Home',
   data () {
     return {
+      hot_mers: [],
+      hot_shops: [],
       shops: [],
       swiperList: [],
+      userinfo: {},
       showShareValue: '',
       addr: {
         pro: '四川',
@@ -64,6 +67,8 @@ export default {
       res = res.data
       if (res.ret === true) {
         const data = res.data
+        this.hot_mers = data.hot_mers
+        this.hot_shops = data.hot_shops
         this.shops = data.merchantList
         this.swiperList = data.swiperList
         console.log(this.addr)
@@ -78,8 +83,10 @@ export default {
     this.bus.$on('getAddr', (msg) => {
       this.addr = msg
       this.addr = msg
+      console.log(this.addr.pro)
       this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
       this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
+      console.log(this.addr)
     })
   }
 }

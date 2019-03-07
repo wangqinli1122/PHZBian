@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     getShopList () {
-      axios.get('/api/shopsList.json').then(this.getShopListSucc)
+      axios.get('/api/index.php/home/index/searchShops').then(this.getShopListSucc)
     },
     getShopListSucc (res) {
       res = res.data
@@ -41,6 +41,9 @@ export default {
     }
   },
   mounted () {
+    this.getShopList()
+  },
+  activated () {
     this.getShopList()
   }
 }
