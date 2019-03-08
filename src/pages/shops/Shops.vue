@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.php/home/index/getShopInfo', {
+      axios.get('/api/index.php/home/index/getMersInfo', {
         params: {
           id: this.$route.params.id
         }
@@ -56,7 +56,6 @@ export default {
         this.goods = data.goodsList
         this.shopName = data.shopName
         this.shopAddress = data.shopAddress
-        this.shopRange = data.shopRange
         this.shopTel = data.shopTel
         this.shopImg = data.shopImg
       }

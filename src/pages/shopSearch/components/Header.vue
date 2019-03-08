@@ -1,11 +1,11 @@
 <template>
   <div class="header">
-    <router-link to="/" class="header-left">
+    <router-link to="" class="header-left" @click.native="$router.back(-1)">
       <span class="iconfont back-icon">&#xe617;</span>
     </router-link>
     <div class="header-search">
-      <input type="text" class="header-search-input">
-      <span class="iconfont back-icon">&#xe6aa;</span>
+      <input type="text" class="header-search-input" :value="name" ref="nameInput" @keyup.enter="enterSearchName">
+      <span class="iconfont back-icon" @click="handleClickSear">&#xe6aa;</span>
     </div>
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
@@ -21,6 +21,9 @@
 <script>
 export default {
   name: 'SearchHeader',
+  props: {
+    name: String
+  },
   data () {
     return {
       showList: false,
@@ -34,6 +37,12 @@ export default {
     showShare () {
       this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
       this.$emit('showShare', this.isShowShare)
+    },
+    handleClickSear () {
+      this.$emit('searchName', this.$refs.nameInput.value)
+    },
+    enterSearchName () {
+      this.$emit('searchName', this.$refs.nameInput.value)
     }
   },
   mounted () {

@@ -1,21 +1,21 @@
 <template>
   <div class="info">
     <div class="range">
-      <span class="range-left">¥</span>215.00
+      <span class="range-left">¥</span>{{this.goodsprice}}
       <div class="range-right">
         <span class="iconfont back-icon">&#xe655;</span>1.2km
       </div>
     </div>
-    <h3 class="name">外套男士夹克</h3>
+    <h3 class="name">{{this.gName}}</h3>
     <p class="goodsDesc">外套男士夹克春季韩版潮流2019新款春秋衣服男装春装休闲棒球服男</p>
     <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
-      <span class="iconfont content-left border-right">&#xe655;</span>
-      <div class="center">
-        <h4 class="title">周大福珠宝店</h4>
-        <p class="desc">四川省成都市锦江区某某街道</p>
+      <span class="iconfont content-left border-right">&#xe633;</span>
+      <div class="center" @click="handleClickNavigation">
+        <h4 class="title">{{this.sName}}</h4>
+        <p class="desc">{{this.sAddr}}</p>
       </div>
-      <a class="iconfont content-right border-left" href="tel:18688888888">&#xe60f;</a>
+      <a class="iconfont content-right border-left" :href="'tel:' + sTel">&#xe60f;</a>
     </div>
     <div class="cutoff border-bottom"></div>
     <h3 class="wrap-title border-bottom">
@@ -23,13 +23,28 @@
       商品详情
       <span>——</span>
     </h3>
-    <div class="container"><img src="static/img/goods-img1.jpg"></div>
+    <div class="container">{{this.content}}</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ShopsInfo'
+  name: 'ShopsInfo',
+  props: {
+    sName: String,
+    sAddr: String,
+    sTel: String,
+    gName: String,
+    content: String,
+    goodsprice: String,
+    lat: String,
+    lng: String
+  },
+  methods: {
+    handleClickNavigation () {
+      this.$router.push('www.baidu.com')
+    }
+  }
 }
 </script>
 
@@ -64,19 +79,20 @@ export default {
         padding-right: .05rem
   .name
     font-size: .32rem
-    padding: .1rem .2rem 0
+    padding: .1rem .2rem .2rem
     ellipsis()
   .goodsDesc
     line-height: .36rem
     padding: .2rem
     color: $grayColor
+    display: none
   .content
     display: flex
     .content-left
       width: .88rem
       text-align: center
       float: left
-      line-height: .68rem
+      line-height: .88rem
       margin: .1rem 0
       color: $grayColor
     .center

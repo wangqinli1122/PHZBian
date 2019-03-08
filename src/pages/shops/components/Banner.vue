@@ -19,7 +19,7 @@ export default {
     margin-top: $headerHeight
     height: 0
     overflow: hidden
-    padding-bottom: 50%
+    padding-bottom: 100%
     .img
       width:100%
 </style>

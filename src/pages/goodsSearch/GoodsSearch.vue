@@ -1,9 +1,10 @@
 <template>
   <div>
-    <search-header @showShare="getShowShare"></search-header>
+    <search-header @showShare="getShowShare" @searchName="getSearchName" :name="shopName"></search-header>
     <h3 class="main-title">周边商品</h3>
     <search-goods :list="goods"></search-goods>
     <common-share :isShowShare="showShareValue"></common-share>
+    <div class="non" v-show="non">暂无相关内容</div>
   </div>
 </template>
 
@@ -17,7 +18,10 @@ export default {
   data () {
     return {
       goods: [],
-      showShareValue: ''
+      showShareValue: '',
+      goodsName: this.$route.params.name,
+      page: '',
+      non: false
     }
   },
   components: {
@@ -27,7 +31,14 @@ export default {
   },
   methods: {
     getGoodsList () {
-      axios.get('/api/index.php/home/index/searchMers').then(this.getGoodsListSucc)
+      axios.get('/api/index.php/home/index/searchShops', {
+        params: {
+          lat: this.$route.params.lat,
+          lng: this.$route.params.lng,
+          name: this.goodsName,
+          page: this.$route.params.page
+        }
+      }).then(this.getGoodsListSucc)
     },
     getGoodsListSucc (res) {
       res = res.data
@@ -35,18 +46,26 @@ export default {
       if (res.ret === true) {
         const data = res.data
         this.goods = data.goodsList
+        if (this.goods.length < 1) {
+          this.non = true
+        } else {
+          this.non = false
+        }
       }
     },
     getShowShare (value) {
       this.showShareValue = value
+    },
+    getSearchName (value) {
+      console.log(value)
+      this.shopName = value
+      this.getShopList()
     }
   },
   mounted () {
-    console.log(1)
     this.getGoodsList()
   },
   activated () {
-    console.log(2)
     this.getGoodsList()
   }
 }
@@ -59,4 +78,9 @@ export default {
     margin-top: .8rem
     font-size: .32rem
     font-weight: normal
+  .non
+    font-size: .32rem
+    color: #ccc
+    text-align: center
+    line-height: 1rem
 </style>

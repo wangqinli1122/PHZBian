@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div v-show="showHeader">
-      <router-link to="/" class="header-fixed-left">
+      <router-link to="" class="header-fixed-left" @click.native="$router.back(-1)">
         <span class="iconfont back-icon">&#xe617;</span>
       </router-link>
       <div class="header-fixed-right">
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div v-show="!showHeader" class="header" :style="opacityStyle">
-      <router-link to="/" class="header-left">
+      <router-link to="" class="header-left" @click.native="$router.back(-1)">
         <span class="iconfont back-icon">&#xe617;</span>
       </router-link>
       <div class="header-center">商品详情</div>
