@@ -1,36 +1,78 @@
 <template>
-  <ul class="goods">
-    <router-link tag="li" :to="'/goods/'+item.id" class="shop border-bottom" v-for="item of list" :key="item.id">
-      <div class="img-box">
-        <img :src="item.img" class="img">
-      </div>
-      <div class="info">
-        <div class="title-box">
-          <h4 class="title">{{item.name}}</h4>
-          <span class="iconfont back-icon" v-show="isShowTel">&#xe60f;</span>
+  <div class="wrapper" ref="wrapper">
+    <ul class="goods content">
+      <li @click="handleGetSee(item.id)" class="shop border-bottom" v-for="item of list" :key="item.id" ref="item.id">
+        <div class="img-box">
+          <img :src="item.img" class="img">
         </div>
-        <p class="content">{{item.desc}}</p>
-        <div class="range">
-          <span class="range-left">¥</span>{{item.price}}
-          <div class="range-right">
-            <span class="iconfont back-icon">&#xe603;</span>{{item.see}}
+        <div class="info">
+          <div class="title-box">
+            <h4 class="title">{{item.name}}</h4>
+            <span class="iconfont back-icon" v-show="isShowTel">&#xe60f;</span>
+          </div>
+          <p class="content">{{item.desc}}</p>
+          <div class="range">
+            <span class="range-left">¥</span>{{item.price}}
+            <div class="range-right">
+              <span class="iconfont back-icon">&#xe603;</span>{{item.see}}
+            </div>
           </div>
         </div>
-      </div>
-      <span class="iconfont details">&#xe60a;</span>
-    </router-link>
-  </ul>
+        <span class="iconfont details">&#xe60a;</span>
+      </li>
+    </ul>
+    <div class="non" v-show="non">暂无相关内容</div>
+  </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+import axios from 'axios'
 export default {
   name: 'ShopsGoods',
   props: {
-    list: Array
+    list: Array,
+    getGoodsName: String
   },
   data () {
     return {
-      isShowTel: false
+      isShowTel: false,
+      non: false
+    }
+  },
+  methods: {
+    handleGetSee (id) {
+      axios.get('/api/index.php/home/index/addPv', {
+        params: {
+          id: id
+        }
+      }).then(this.handleGetSeeSucc)
+      this.$router.push({
+        name: 'Goods',
+        params: { id: id }
+      })
+    },
+    handleGetSeeSucc (res) {
+      res = res.data
+    }
+  },
+  watch: {
+    getGoodsName () {
+      this.list.forEach((value, index) => {
+        var nameStr = this.getGoodsName
+        if (value.name.indexOf(nameStr) > 0) {
+          let element = this.$refs[index]
+          this.scroll.scrollToElement(element)
+        }
+      })
+    }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.wrapper)
+    if (this.list.length > 0) {
+      this.non = false
+    } else {
+      this.non = true
     }
   }
 }
@@ -42,6 +84,11 @@ export default {
   .border-bottom
     &:before
       border-color: #ccc
+  .non
+    font-size: .32rem
+    color: #ccc
+    text-align: center
+    line-height: 1rem
   .goods
     padding: 0 .2rem
     .shop

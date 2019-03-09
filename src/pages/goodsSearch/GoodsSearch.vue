@@ -1,10 +1,11 @@
 <template>
   <div>
-    <search-header @showShare="getShowShare" @searchName="getSearchName" :name="shopName"></search-header>
+    <search-header @showShare="getShowShare" @searchName="getSearchName" :name="goodsName"></search-header>
     <h3 class="main-title">周边商品</h3>
     <search-goods :list="goods"></search-goods>
     <common-share :isShowShare="showShareValue"></common-share>
-    <div class="non" v-show="non">暂无相关内容</div>
+    <div class="non" v-show="!non" @click="clickMore">加载更多内容</div>
+    <div class="non" v-show="non">暂无更多相关内容</div>
   </div>
 </template>
 
@@ -17,10 +18,11 @@ export default {
   name: 'Search',
   data () {
     return {
+      shopName: '',
       goods: [],
       showShareValue: '',
-      goodsName: this.$route.params.name,
-      page: '',
+      goodsName: '',
+      page: 1,
       non: false
     }
   },
@@ -36,17 +38,21 @@ export default {
           lat: this.$route.params.lat,
           lng: this.$route.params.lng,
           name: this.goodsName,
-          page: this.$route.params.page
+          page: this.page
         }
       }).then(this.getGoodsListSucc)
     },
     getGoodsListSucc (res) {
       res = res.data
-      console.log(res)
       if (res.ret === true) {
         const data = res.data
-        this.goods = data.goodsList
+        this.goods = this.goods.concat(data.goodsList)
         if (this.goods.length < 1) {
+          this.non = true
+        } else {
+          this.non = false
+        }
+        if (data.goodsList.length < 10) {
           this.non = true
         } else {
           this.non = false
@@ -57,15 +63,17 @@ export default {
       this.showShareValue = value
     },
     getSearchName (value) {
-      console.log(value)
       this.shopName = value
-      this.getShopList()
+      this.getGoodsList()
+    },
+    clickMore () {
+      this.page = parseInt(this.page) + 1
+      this.getGoodsList()
     }
   },
   mounted () {
-    this.getGoodsList()
-  },
-  activated () {
+    this.goodsName = this.$route.params.name
+    this.page = this.$route.params.page
     this.getGoodsList()
   }
 }

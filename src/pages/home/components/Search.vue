@@ -20,10 +20,10 @@
       </div>
     </div>
     <ul class="search-common" v-show="active">
-      <li class="common border-bottom" v-for="item of hotGoodsList" :key="item.id">{{item.msg}}</li>
+      <li class="common border-bottom" v-for="item of hotGoodsList" :key="item.id" @click="handleClickHotGoods">{{item.msg}}</li>
     </ul>
     <ul class="search-common" v-show="!active">
-      <li class="common border-bottom" v-for="item of hotShopsList" :key="item.id">{{item.msg}}</li>
+      <li class="common border-bottom" v-for="item of hotShopsList" :key="item.id" @click="handleClickHotShop">{{item.msg}}</li>
     </ul>
   </div>
 </template>
@@ -89,6 +89,14 @@ export default {
           }
         })
       }
+    },
+    handleClickHotGoods (obj) {
+      this.goodContent = obj.target.innerHTML
+      this.handleClickGoods()
+    },
+    handleClickHotShop (obj) {
+      this.content = obj.target.innerHTML
+      this.handleClickShop()
     }
   }
 }

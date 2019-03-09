@@ -1,7 +1,7 @@
 <template>
   <div>
     <home-header @showShare="getShowShare"></home-header>
-    <home-search :hotShopsList="hot_shops" :hotGoodsList="hot_mers"></home-search>
+    <home-search :hotShopsList="hot_mers" :hotGoodsList="hot_shops"></home-search>
     <home-swiper :list="swiperList"></home-swiper>
     <h3 class="title border-bottom">
       <span>——</span>
@@ -32,13 +32,7 @@ export default {
       swiperList: [],
       userinfo: {},
       showShareValue: '',
-      addr: {
-        pro: '四川',
-        city: '成都',
-        dis: '龙泉驿区',
-        lng: 116.40387397,
-        lat: 39.91488908
-      },
+      addr: {},
       page: 0
     }
   },
@@ -71,7 +65,13 @@ export default {
         this.hot_shops = data.hot_shops
         this.shops = data.merchantList
         this.swiperList = data.swiperList
-        console.log(this.addr)
+        this.shops.forEach(function (c) {
+          if (c.range > 1000) {
+            c.range = (c.range / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
       }
     },
     getShowShare (value) {
@@ -79,14 +79,11 @@ export default {
     }
   },
   mounted () {
-    this.getHomeInfo()
     this.bus.$on('getAddr', (msg) => {
       this.addr = msg
-      this.addr = msg
-      console.log(this.addr.pro)
       this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
       this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
-      console.log(this.addr)
+      this.getHomeInfo()
     })
   }
 }

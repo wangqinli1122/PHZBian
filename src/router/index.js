@@ -5,6 +5,7 @@ import Shops from '@/pages/shops/Shops'
 import Goods from '@/pages/goods/Goods'
 import ShopSearch from '@/pages/shopSearch/ShopSearch'
 import GoodsSearch from '@/pages/goodsSearch/GoodsSearch'
+import Collect from '@/pages/common/collect/Collect'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/goodsSearch/:name/:lat/:lng/:page',
       name: 'GoodsSearch',
       component: GoodsSearch
+    },
+    {
+      path: '/collect/',
+      name: 'Collect',
+      component: Collect
     }
   ],
   scrollBehavior (to, from, savePosition) {

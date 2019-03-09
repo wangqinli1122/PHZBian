@@ -1,6 +1,6 @@
 <template>
   <ul class="goods">
-    <router-link tag="li" :to="'/goods/'+item.id" class="shop border-bottom" v-for="item of list" :key="item.id">
+    <li @click="handleGetSee(item.id)" class="shop border-bottom" v-for="item of list" :key="item.id">
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>
@@ -18,11 +18,12 @@
         </div>
       </div>
       <span class="iconfont details">&#xe60a;</span>
-    </router-link>
+    </li>
   </ul>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ShopsGoods',
   props: {
@@ -36,6 +37,20 @@ export default {
   methods: {
     hanldeClickA (e) {
       e.stopPropagation()
+    },
+    handleGetSee (id) {
+      axios.get('/api/index.php/home/index/addPv', {
+        params: {
+          id: id
+        }
+      }).then(this.handleGetSeeSucc)
+      this.$router.push({
+        name: 'Goods',
+        params: { id: id }
+      })
+    },
+    handleGetSeeSucc (res) {
+      res = res.data
     }
   }
 }

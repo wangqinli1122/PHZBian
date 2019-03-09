@@ -4,7 +4,7 @@
       <span class="iconfont back-icon">&#xe617;</span>
     </router-link>
     <div class="header-search">
-      <input type="text" class="header-search-input">
+      <input type="text" class="header-search-input" ref="nameInput" @keyup.enter="enterSearchName">
       <span class="iconfont back-icon">&#xe6aa;</span>
     </div>
     <div class="header-list" @click="handleClickShowList">
@@ -34,6 +34,9 @@ export default {
     showShare () {
       this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
       this.$emit('showShare', this.isShowShare)
+    },
+    enterSearchName () {
+      this.$emit('searchName', this.$refs.nameInput.value)
     }
   },
   mounted () {

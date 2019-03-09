@@ -1,6 +1,6 @@
 <template>
   <div class="shops">
-    <router-link :to="'/shops/'+ item.id" class="shop border-bottom" v-for="item of list" :key="item.id">
+    <div class="shop border-bottom" @click="handleGetRange(item.id, item.range)" v-for="item of list" :key="item.id">
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>
@@ -10,10 +10,10 @@
           <a class="iconfont back-icon" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a>
         </div>
         <p class="content">{{item.address}}</p>
-        <div class="range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
+        <div class="range"><span class="iconfont">&#xe655;</span><span>{{item.range}}</span></div>
       </div>
       <span class="iconfont details">&#xe60a;</span>
-    </router-link>
+    </div>
   </div>
 </template>
 
@@ -26,6 +26,13 @@ export default {
   methods: {
     hanldeClickA (e) {
       e.stopPropagation()
+    },
+    handleGetRange (id, ra) {
+      this.bus.$emit('getRange', ra)
+      this.$router.push({
+        name: 'Shops',
+        params: { id: id }
+      })
     }
   }
 }

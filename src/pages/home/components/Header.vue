@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header-login">
+    <div class="header-login" @click="handleClickLogin">
       <span class="iconfont back-icon">&#xe62f;</span>
       <span class="header-login-name">登录</span>
     </div>
@@ -12,7 +12,7 @@
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
     <ul class="header-float" v-show="showList">
-      <li class="list border-bottom" @click="addFavorite"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
+      <router-link to="/collect/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <li class="list"><span class="iconfont list-icon">&#xe627;</span>首页</li>
     </ul>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HomeHeader',
   data () {
@@ -33,6 +34,13 @@ export default {
     }
   },
   methods: {
+    handleClickLogin () {
+      axios.get('/api/index.php/home/index/wxLogin').then(this.handleClickLoginSucc)
+    },
+    handleClickLoginSucc (res) {
+      res = res.data
+      console.log(res)
+    },
     handleClickShowList () {
       this.showList === false ? this.showList = true : this.showList = false
     },

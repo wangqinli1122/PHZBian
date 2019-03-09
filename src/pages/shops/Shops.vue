@@ -1,6 +1,6 @@
 <template>
   <div>
-    <shops-header @showShare="getShowShare"></shops-header>
+    <shops-header @showShare="getShowShare"  @searchName="getSearchName"></shops-header>
     <shops-banner :img="shopImg"></shops-banner>
     <shops-info
       :name="shopName"
@@ -9,7 +9,7 @@
       :tel="shopTel">
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
-    <shops-goods :list="goods"></shops-goods>
+    <shops-goods :list="goods" :getGoodsName="goodsName"></shops-goods>
     <common-share :isShowShare="showShareValue"></common-share>
   </div>
 </template>
@@ -31,7 +31,8 @@ export default {
       shopTel: '',
       shopImg: '',
       goods: [],
-      showShareValue: ''
+      showShareValue: '',
+      goodsName: ''
     }
   },
   components: {
@@ -62,13 +63,17 @@ export default {
     },
     getShowShare (value) {
       this.showShareValue = value
+    },
+    getSearchName (value) {
+      this.goodsName = value
     }
   },
   mounted () {
     this.getHomeInfo()
-  },
-  activated () {
-    this.getHomeInfo()
+    this.bus.$on('getRange', (msg) => {
+      this.shopRange = msg
+    })
+    this.goodsName = ''
   }
 }
 </script>

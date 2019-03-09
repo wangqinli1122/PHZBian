@@ -4,7 +4,8 @@
     <h3 class="main-title">周边商家</h3>
     <common-shops :list="shops"></common-shops>
     <common-share :isShowShare="showShareValue"></common-share>
-    <div class="non" v-show="non">暂无相关内容</div>
+    <div class="non" v-show="!non" @click="clickMore">加载更多内容</div>
+    <div class="non" v-show="non">暂无更多相关内容</div>
   </div>
 </template>
 
@@ -19,8 +20,8 @@ export default {
     return {
       shops: [],
       showShareValue: '',
-      shopName: this.$route.params.name,
-      page: '',
+      shopName: '',
+      page: 1,
       non: false
     }
   },
@@ -36,7 +37,7 @@ export default {
           lat: this.$route.params.lat,
           lng: this.$route.params.lng,
           name: this.shopName,
-          page: this.$route.params.page
+          page: this.page
         }
       }).then(this.getShopListSucc)
     },
@@ -44,12 +45,24 @@ export default {
       res = res.data
       if (res.ret === true) {
         const data = res.data
-        this.shops = data.merchantList
+        this.shops = this.shops.concat(data.merchantList)
         if (this.shops.length < 1) {
           this.non = true
         } else {
           this.non = false
         }
+        if (data.merchantList.length < 10) {
+          this.non = true
+        } else {
+          this.non = false
+        }
+        this.shops.forEach(function (c) {
+          if (c.range > 1000) {
+            c.range = (c.range / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
       }
     },
     getShowShare (value) {
@@ -59,12 +72,15 @@ export default {
       console.log(value)
       this.shopName = value
       this.getShopList()
+    },
+    clickMore () {
+      this.page = parseInt(this.page) + 1
+      this.getShopList()
     }
   },
   mounted () {
-    this.getShopList()
-  },
-  activated () {
+    this.shopName = this.$route.params.name
+    this.page = this.$route.params.page
     this.getShopList()
   }
 }
