@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     handleGetSee (id) {
-      axios.get('/api/index.php/home/index/addPv', {
+      axios.get('/home/index/addPv', {
         params: {
           id: id
         }
@@ -69,11 +69,6 @@ export default {
   },
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
-    if (this.list.length > 0) {
-      this.non = false
-    } else {
-      this.non = true
-    }
   }
 }
 </script>

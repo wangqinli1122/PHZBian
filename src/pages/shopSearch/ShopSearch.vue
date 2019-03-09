@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getShopList () {
-      axios.get('/api/index.php/home/index/searchMers', {
+      axios.get('/home/index/searchMers', {
         params: {
           lat: this.$route.params.lat,
           lng: this.$route.params.lng,

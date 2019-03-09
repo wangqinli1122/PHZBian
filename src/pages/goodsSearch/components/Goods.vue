@@ -7,7 +7,7 @@
       <div class="info">
         <div class="title-box">
           <h4 class="title">{{item.name}}</h4>
-          <a class="iconfont back-icon" v-show="isShowTel" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a>
+          <!-- <a class="iconfont back-icon" v-show="isShowTel" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a> -->
         </div>
         <p class="content">{{item.desc}}</p>
         <div class="range">
@@ -39,7 +39,7 @@ export default {
       e.stopPropagation()
     },
     handleGetSee (id) {
-      axios.get('/api/index.php/home/index/addPv', {
+      axios.get('/home/index/addPv', {
         params: {
           id: id
         }

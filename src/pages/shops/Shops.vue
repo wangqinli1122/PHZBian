@@ -5,7 +5,6 @@
     <shops-info
       :name="shopName"
       :address="shopAddress"
-      :range="shopRange"
       :tel="shopTel">
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
@@ -27,7 +26,6 @@ export default {
     return {
       shopName: '',
       shopAddress: '',
-      shopRange: '',
       shopTel: '',
       shopImg: '',
       goods: [],
@@ -44,7 +42,7 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.php/home/index/getMersInfo', {
+      axios.get('/home/index/getMersInfo', {
         params: {
           id: this.$route.params.id
         }
@@ -70,9 +68,6 @@ export default {
   },
   mounted () {
     this.getHomeInfo()
-    this.bus.$on('getRange', (msg) => {
-      this.shopRange = msg
-    })
     this.goodsName = ''
   }
 }

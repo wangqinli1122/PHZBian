@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getGoodsInfo () {
-      axios.get('/api/index.php/home/index/getShopInfo', {
+      axios.get('/home/index/getShopInfo', {
         params: {
           id: this.$route.params.id
         }

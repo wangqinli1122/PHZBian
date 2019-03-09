@@ -5,7 +5,7 @@
       <span class="iconfont content-left border-right">&#xe655;</span>
       <div class="center">
         <h4 class="title">{{this.address}}</h4>
-        <p class="desc">距离我{{this.range}}</p>
+        <p class="desc">距离我{{this.shopRange}}</p>
       </div>
       <a class="iconfont content-right border-left" href="tel:18688888888">&#xe60f;</a>
     </div>
@@ -19,8 +19,17 @@ export default {
   props: {
     name: String,
     address: String,
-    range: String,
     tel: String
+  },
+  data () {
+    return {
+      shopRange: '1'
+    }
+  },
+  mounted () {
+    this.bus.$on('getRange', (msg) => {
+      this.shopRange = msg
+    })
   }
 }
 </script>

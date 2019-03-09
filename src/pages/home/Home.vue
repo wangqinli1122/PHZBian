@@ -10,6 +10,8 @@
     </h3>
     <common-shops :list="shops"></common-shops>
     <common-share :isShowShare="showShareValue"></common-share>
+    <div class="non" v-show="!non" @click="clickMore">加载更多内容</div>
+    <div class="non" v-show="non">暂无更多相关内容</div>
     <map-city></map-city>
   </div>
 </template>
@@ -33,7 +35,8 @@ export default {
       userinfo: {},
       showShareValue: '',
       addr: {},
-      page: 0
+      page: 1,
+      non: false
     }
   },
   components: {
@@ -46,7 +49,7 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/index.php/home/index/getHomeList', {
+      axios.get('/home/index/getHomeList', {
         params: {
           lng: this.addr.lng,
           lat: this.addr.lat,
@@ -63,8 +66,18 @@ export default {
         const data = res.data
         this.hot_mers = data.hot_mers
         this.hot_shops = data.hot_shops
-        this.shops = data.merchantList
         this.swiperList = data.swiperList
+        this.shops = this.shops.concat(data.merchantList)
+        if (this.shops.length < 1) {
+          this.non = true
+        } else {
+          this.non = false
+        }
+        if (data.merchantList.length < 10) {
+          this.non = true
+        } else {
+          this.non = false
+        }
         this.shops.forEach(function (c) {
           if (c.range > 1000) {
             c.range = (c.range / 1000).toFixed(2) + 'km'
@@ -76,6 +89,10 @@ export default {
     },
     getShowShare (value) {
       this.showShareValue = value
+    },
+    clickMore () {
+      this.page = parseInt(this.page) + 1
+      this.getHomeInfo()
     }
   },
   mounted () {
@@ -97,4 +114,9 @@ export default {
     padding-bottom: .2rem
     color: $grayColor
     text-align: center
+  .non
+    font-size: .32rem
+    color: #ccc
+    text-align: center
+    line-height: 1rem
 </style>

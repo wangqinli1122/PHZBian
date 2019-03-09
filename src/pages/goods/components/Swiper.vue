@@ -2,9 +2,7 @@
   <div class="swiper">
     <swiper :options="swiperOption">
       <!-- slides -->
-      <swiper-slide><img class="swiper-img" src="static/img/goods-img1.jpg"></swiper-slide>
-      <swiper-slide><img class="swiper-img" src="@/assets/images/shop-img1.jpg"></swiper-slide>
-      <swiper-slide><img class="swiper-img" src="@/assets/images/banner1.jpg"></swiper-slide>
+      <swiper-slide v-for="(item,index) of list" :key="index"><img class="swiper-img" :src="item"></swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination"  slot="pagination"></div>
     </swiper>
@@ -14,6 +12,9 @@
 <script>
 export default {
   name: 'GoodsSwiper',
+  props: {
+    list: Array
+  },
   data () {
     return {
       swiperOption: {

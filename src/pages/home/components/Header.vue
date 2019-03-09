@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     handleClickLogin () {
-      axios.get('/api/index.php/home/index/wxLogin').then(this.handleClickLoginSucc)
+      axios.get('/home/index/wxLogin').then(this.handleClickLoginSucc)
     },
     handleClickLoginSucc (res) {
       res = res.data
@@ -46,6 +46,7 @@ export default {
     },
     handleScroll () {
       const top = document.documentElement.scrollTop
+      console.log(top)
       if (top > 85) {
         let opacity = (top - 85) / (165 - 85)
         opacity = opacity > 1 ? 1 : opacity
@@ -114,9 +115,9 @@ export default {
       display: flex
       float: left
       color: $grayColor
-      font-size: .2rem
+      font-size: .30rem
       .back-icon
-        font-size: .36rem
+        font-size: .4rem
       .header-login-name
         flex: 1
         text-align: center
@@ -125,15 +126,15 @@ export default {
       position: relative
       .header-search-input
         width: 100%
-        height: .42rem
+        height: .5rem
         padding-left: .5rem
         box-sizing: border-box
-        line-height: .42rem
-        border-radius: .04rem
-        font-size: .24rem
+        line-height: .5rem
+        border-radius: .06rem
+        font-size: .32rem
         background: #ebebeb
       .back-icon
-        font-size: .24rem
+        font-size: .36rem
         position: absolute
         top: .04rem
         left: .08rem
@@ -143,22 +144,22 @@ export default {
       float: right
       color: $grayColor
       .back-icon
-        font-size: .36rem
+        font-size: .4rem
     .header-float
-      width: .76rem
-      height: 1.36rem
-      padding: .12rem .24rem
-      border-radius: .04rem
+      width: 1.3rem
+      height: 2.1rem
+      padding: .2rem .3rem
+      border-radius: .08rem
       background: $grayColor
       position: absolute
-      top: .6rem
-      right: .2rem
+      top: .7rem
+      right: .3rem
       color: white
       .list
-        height: .45rem
-        line-height: .45rem
-        font-size: .2rem
+        height: .7rem
+        line-height: .7rem
+        font-size: .32rem
         .list-icon
-          font-size: .2rem
-          padding-right: .04rem
+          font-size: .4rem
+          padding-right: .08rem
 </style>

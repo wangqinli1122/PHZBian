@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getGoodsList () {
-      axios.get('/api/index.php/home/index/searchShops', {
+      axios.get('/home/index/searchShops', {
         params: {
           lat: this.$route.params.lat,
           lng: this.$route.params.lng,

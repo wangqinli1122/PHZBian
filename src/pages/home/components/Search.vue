@@ -176,8 +176,8 @@ export default {
       .common
         float: left
         text-align: center
-        padding: .04rem
-        margin-right: .12rem
-        font-size: .18rem
+        padding: .08rem
+        margin-right: .2rem
+        font-size: .3rem
         color: $grayColor
 </style>

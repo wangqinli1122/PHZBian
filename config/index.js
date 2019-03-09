@@ -11,11 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      "/api": {
-        target: 'http://souzhoub.com',
-        pathRewrite: {
-            '^/api': '/'
-        }
+      "/home": {
+        target: 'http://souzhoub.com/index.php',
       }
     },
 
@@ -56,7 +53,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'asset',
     assetsPublicPath: '/',
 
     /**
