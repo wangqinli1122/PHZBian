@@ -14,13 +14,12 @@
     <ul class="header-float" v-show="showList">
       <router-link to="/collect/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
-      <li class="list"><span class="iconfont list-icon">&#xe627;</span>首页</li>
+      <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'HomeHeader',
   data () {
@@ -35,11 +34,7 @@ export default {
   },
   methods: {
     handleClickLogin () {
-      axios.get('/home/index/wxLogin').then(this.handleClickLoginSucc)
-    },
-    handleClickLoginSucc (res) {
-      res = res.data
-      console.log(res)
+      this.$router.push('/wxLogin')
     },
     handleClickShowList () {
       this.showList === false ? this.showList = true : this.showList = false
@@ -136,7 +131,7 @@ export default {
       .back-icon
         font-size: .36rem
         position: absolute
-        top: .04rem
+        top: .02rem
         left: .08rem
     .header-list
       width: .56rem
@@ -146,7 +141,7 @@ export default {
       .back-icon
         font-size: .4rem
     .header-float
-      width: 1.3rem
+      width: 1.2rem
       height: 2.1rem
       padding: .2rem .3rem
       border-radius: .08rem
@@ -160,6 +155,6 @@ export default {
         line-height: .7rem
         font-size: .32rem
         .list-icon
-          font-size: .4rem
+          font-size: .38rem
           padding-right: .08rem
 </style>

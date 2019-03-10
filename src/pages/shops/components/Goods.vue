@@ -31,8 +31,7 @@ import axios from 'axios'
 export default {
   name: 'ShopsGoods',
   props: {
-    list: Array,
-    getGoodsName: String
+    list: Array
   },
   data () {
     return {
@@ -54,17 +53,6 @@ export default {
     },
     handleGetSeeSucc (res) {
       res = res.data
-    }
-  },
-  watch: {
-    getGoodsName () {
-      this.list.forEach((value, index) => {
-        var nameStr = this.getGoodsName
-        if (value.name.indexOf(nameStr) > 0) {
-          let element = this.$refs[index]
-          this.scroll.scrollToElement(element)
-        }
-      })
     }
   },
   mounted () {

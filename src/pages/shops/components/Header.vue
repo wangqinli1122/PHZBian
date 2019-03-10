@@ -13,12 +13,13 @@
     <ul class="header-float" v-show="showList">
       <li class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
-      <li class="list"><span class="iconfont list-icon">&#xe627;</span>首页</li>
+      <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ShopsHeader',
   data () {
@@ -36,7 +37,18 @@ export default {
       this.$emit('showShare', this.isShowShare)
     },
     enterSearchName () {
-      this.$emit('searchName', this.$refs.nameInput.value)
+      axios.get('/home/index/searchMerShops', {
+        params: {
+          id: this.$route.params.id,
+          search: this.$refs.nameInput.value
+        }
+      }).then(this.enterSearchNameSucc)
+    },
+    enterSearchNameSucc (res) {
+      res = res.data
+      if (res.ret === true) {
+        this.$emit('searchName', res.data)
+      }
     }
   },
   mounted () {
@@ -96,20 +108,20 @@ export default {
       .back-icon
         font-size: .36rem
     .header-float
-      width: .76rem
-      height: 1.36rem
-      padding: .12rem .24rem
-      border-radius: .04rem
+      width: 1.2rem
+      height: 2.1rem
+      padding: .2rem .3rem
+      border-radius: .08rem
       background: $grayColor
       position: absolute
-      top: .6rem
-      right: .2rem
+      top: .7rem
+      right: .3rem
       color: white
       .list
-        height: .45rem
-        line-height: .45rem
-        font-size: .2rem
+        height: .7rem
+        line-height: .7rem
+        font-size: .32rem
         .list-icon
-          font-size: .2rem
-          padding-right: .04rem
+          font-size: .38rem
+          padding-right: .08rem
 </style>

@@ -53,14 +53,16 @@ export default {
     font-size: .32rem
     line-height: .8rem
     padding-left: .2rem
+    font-weight: bold
   .content
     display: flex
     .content-left
       width: .88rem
       text-align: center
       float: left
-      line-height: .68rem
+      line-height: .88rem
       margin: .1rem 0
+      font-size: .36rem
       color: $grayColor
     .center
       flex: 1
@@ -71,14 +73,15 @@ export default {
         padding-left: .2rem
         ellipsis()
       .desc
-        font-size: .2rem
+        font-size: .28rem
         color: $grayColor
     .content-right
       width: .88rem
       text-align: center
       float: right
-      line-height: .68rem
+      line-height: .88rem
       margin: .1rem 0
+      font-size: .36rem
       color: $bgColor
   .cutoff
     height: .3rem

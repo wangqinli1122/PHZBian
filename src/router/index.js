@@ -27,7 +27,10 @@ export default new Router({
     {
       path: '/goods/:id',
       name: 'Goods',
-      component: Goods
+      component: Goods,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/shopSearch/:name/:lat/:lng/:page',

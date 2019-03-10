@@ -7,17 +7,22 @@
       <div class="info">
         <div class="title-box">
           <h4 class="title">{{item.name}}</h4>
+          <div class="back-icon">
+            <span class="iconfont">&#xe603;</span>
+            <span>{{item.see}}</span>
+          </div>
           <!-- <a class="iconfont back-icon" v-show="isShowTel" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a> -->
         </div>
-        <p class="content">{{item.desc}}</p>
+        <p class="content">{{item.address}}</p>
         <div class="range">
           <span class="range-left">¥</span>{{item.price}}
           <div class="range-right">
-            <span class="iconfont back-icon">&#xe603;</span>{{item.see}}
+            <span class="iconfont">&#xe655;</span>
+            <span>{{item.range}}</span>
           </div>
         </div>
       </div>
-      <span class="iconfont details">&#xe60a;</span>
+      <!-- <span class="iconfont details">&#xe60a;</span> -->
     </li>
   </ul>
 </template>
@@ -68,8 +73,8 @@ export default {
       display: flex
       padding: .15rem 0
       .img-box
-        width: 1.2rem
-        height: 1.2rem
+        width: 1.4rem
+        height: 1.4rem
         float: left
         margin-right: .15rem
         overflow: hidden
@@ -98,6 +103,7 @@ export default {
         .range
           color: red
           font-size: .32rem
+          padding-top: 0.1rem
           font-weight: bold
           .range-left
             font-size: .25rem

@@ -8,7 +8,7 @@
       :tel="shopTel">
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
-    <shops-goods :list="goods" :getGoodsName="goodsName"></shops-goods>
+    <shops-goods :list="goods"></shops-goods>
     <common-share :isShowShare="showShareValue"></common-share>
   </div>
 </template>
@@ -29,8 +29,7 @@ export default {
       shopTel: '',
       shopImg: '',
       goods: [],
-      showShareValue: '',
-      goodsName: ''
+      showShareValue: ''
     }
   },
   components: {
@@ -63,7 +62,7 @@ export default {
       this.showShareValue = value
     },
     getSearchName (value) {
-      this.goodsName = value
+      this.goods = value
     }
   },
   mounted () {

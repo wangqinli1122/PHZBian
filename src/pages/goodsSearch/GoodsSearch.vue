@@ -57,6 +57,13 @@ export default {
         } else {
           this.non = false
         }
+        this.goods.forEach(function (c) {
+          if (c.range > 1000) {
+            c.range = (c.range / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
       }
     },
     getShowShare (value) {
