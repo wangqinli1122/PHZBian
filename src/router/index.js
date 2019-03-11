@@ -10,14 +10,12 @@ import Collect from '@/pages/common/collect/Collect'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: Home,
-      meta: {
-        keepAlive: true
-      }
+      component: Home
     },
     {
       path: '/shops/:id',

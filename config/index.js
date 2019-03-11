@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "/home": {
-        target: 'http://souzhoub.com/index.php',
+        target: 'http://souzhoub.com/',
       }
     },
 

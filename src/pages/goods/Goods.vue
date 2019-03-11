@@ -12,7 +12,7 @@
       :lat="lat"
       :lng="lng"
     ></goods-info>
-    <div style="height:30rem;"></div>
+    <div style="height:20rem;"></div>
   </div>
 </template>
 

@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     handleClickLogin () {
-      this.$router.push('/wxLogin')
+      this.$router.push('/home/index/wxLogin')
     },
     handleClickShowList () {
       this.showList === false ? this.showList = true : this.showList = false
