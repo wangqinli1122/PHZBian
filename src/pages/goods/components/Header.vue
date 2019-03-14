@@ -5,9 +5,9 @@
         <span class="iconfont back-icon">&#xe617;</span>
       </router-link>
       <div class="header-fixed-right">
-        <span class="iconfont list-icon">&#xe687;</span>
+        <router-link to="/collect" tag="span" class="iconfont list-icon">&#xe687;</router-link>
         <span class="iconfont list-icon">&#xe626;</span>
-        <span class="iconfont list-icon">&#xe627;</span>
+        <router-link to="/" tag="span" class="iconfont list-icon">&#xe627;</router-link>
       </div>
     </div>
     <div v-show="!showHeader" class="header" :style="opacityStyle">
@@ -16,9 +16,9 @@
       </router-link>
       <div class="header-center">商品详情</div>
       <div class="header-right">
-        <span class="iconfont list-icon">&#xe687;</span>
+        <router-link to="/collect" tag="span" class="iconfont list-icon">&#xe687;</router-link>
         <span class="iconfont list-icon">&#xe626;</span>
-        <span class="iconfont list-icon">&#xe627;</span>
+        <router-link to="/" tag="span" class="iconfont list-icon">&#xe627;</router-link>
       </div>
     </div>
   </div>
@@ -38,7 +38,6 @@ export default {
   methods: {
     handleScroll () {
       const top = document.documentElement.scrollTop
-      console.log(top)
       if (top > 60) {
         let opacity = top / 250
         opacity = opacity > 1 ? 1 : opacity

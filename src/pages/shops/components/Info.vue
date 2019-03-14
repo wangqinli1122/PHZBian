@@ -1,10 +1,10 @@
 <template>
   <div class="info">
-    <span class="iconfont store_up" :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>
+    <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>
     <h3 class="name">{{this.name}}</h3>
     <div class="content border-topbottom">
       <span class="iconfont content-left border-right">&#xe655;</span>
-      <div class="center">
+      <div class="center" @click="handleClickNavigation">
         <h4 class="title">{{this.address}}</h4>
         <p class="desc">距离我{{this.range}}</p>
       </div>
@@ -22,11 +22,18 @@ export default {
     address: String,
     tel: String,
     range: String,
+    lng: String,
+    lat: String,
     isFinish: Boolean
   },
   methods: {
     handleStore () {
       this.$emit('handleStoreUp')
+    },
+    handleClickNavigation () {
+      if (localStorage.lng) {
+        window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + localStorage.lat + ',' + localStorage.lng + '|name:我的位置&destination=latlng:' + this.lat + ',' + this.lng + '|name:' + this.address + '&mode=driving&region=成都&output=html&src=webapp.baidu.openAPIdemo'
+      }
     }
   }
 }
@@ -58,7 +65,7 @@ export default {
     color: $grayColor
     padding-left: .2rem
   .store_finish
-    color: red
+    color: orange
   .content
     display: flex
     .content-left

@@ -11,7 +11,7 @@
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
     <ul class="header-float" v-show="showList">
-      <li class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</li>
+      <router-link to="/collect/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
     </ul>

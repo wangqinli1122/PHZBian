@@ -3,7 +3,8 @@
     <div class="range">
       <span class="range-left">¥</span>{{this.goodsprice}}
       <div class="range-right">
-        <span class="iconfont back-icon">&#xe655;</span>1.2km
+        <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>收藏
+        <span class="iconfont back-icon" style="padding-left: .2rem">&#xe655;</span>{{this.range}}
       </div>
     </div>
     <h3 class="name">{{this.gName}}</h3>
@@ -38,11 +39,18 @@ export default {
     content: String,
     goodsprice: String,
     lat: String,
-    lng: String
+    lng: String,
+    range: String,
+    isFinish: Boolean
   },
   methods: {
     handleClickNavigation () {
-      this.$router.push('www.baidu.com')
+      if (localStorage.lng) {
+        window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + localStorage.lat + ',' + localStorage.lng + '|name:我的位置&destination=latlng:' + this.lat + ',' + this.lng + '|name:' + this.sAddr + '&mode=driving&region=成都&output=html&src=webapp.baidu.openAPIdemo'
+      }
+    },
+    handleStore () {
+      this.$emit('handleStoreUp')
     }
   }
 }
@@ -75,6 +83,12 @@ export default {
       color: $grayColor
       font-size: .3rem
       font-weight: normal
+      .store_up
+        font-size: .36rem
+        color: $grayColor
+        padding-left: .2rem
+      .store_finish
+        color: orange
       .back-icon
         font-size: .35rem
   .name
@@ -101,6 +115,7 @@ export default {
       flex: 1
       min-width: 0
       margin: .16rem 0
+      cursor: pointer
       .title,.desc
         line-height: .44rem
         padding-left: .2rem

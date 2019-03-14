@@ -1,48 +1,55 @@
 <template>
-  <div class="shops">
-    <div class="shop border-bottom" @click="handleGetRange(item.id)" v-for="item of list" :key="item.id">
-      <div class="del" @click="handleDel" ref="shop" :did="item.id">删除</div>
+  <ul class="goods">
+    <li @click="handleGetSee(item.id)" class="shop border-bottom" v-for="item of list" :key="item.id">
+      <div class="del" @click="handleDel" :gid="item.id">删除</div>
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>
       <div class="info">
         <div class="title-box">
           <h4 class="title">{{item.name}}</h4>
-          <!-- <a class="iconfont back-icon" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a> -->
+          <!-- <a class="iconfont back-icon" v-show="isShowTel" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a> -->
         </div>
         <p class="content">{{item.address}}</p>
         <div class="range">
-          <span class="iconfont">&#xe655;</span>
-          <span>{{item.range}}</span>
+          <span class="range-left">¥</span>{{item.price}}
+          <div class="range-right">
+            <span class="iconfont">&#xe655;</span>
+            <span>{{item.range}}</span>
+          </div>
         </div>
       </div>
-      <!-- <span class="iconfont details">&#xe60sa;</span> -->
-      <a class="iconfont details" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a>
-    </div>
+      <!-- <span class="iconfont details">&#xe60a;</span> -->
+    </li>
     <div class="non" v-show="!list.length">暂无收藏内容</div>
-  </div>
+  </ul>
 </template>
 
 <script>
 export default {
-  name: 'CollectShops',
+  name: 'CollectGoods',
   props: {
     list: Array
+  },
+  data () {
+    return {
+      isShowTel: true
+    }
   },
   methods: {
     hanldeClickA (e) {
       e.stopPropagation()
     },
-    handleGetRange (id) {
+    handleGetSee (id) {
       this.$router.push({
-        name: 'Shops',
+        name: 'Goods',
         params: { id: id }
       })
     },
     handleDel (e) {
       e.stopPropagation()
-      let id = e.target.getAttribute('did')
-      this.$emit('delShop', id)
+      let id = e.target.getAttribute('gid')
+      this.$emit('delGoods', id)
     }
   }
 }
@@ -54,16 +61,13 @@ export default {
   .border-bottom
     &:before
       border-color: #ccc
-  .border-left
-    &:before
-      border-color: #ccc
-  .non
-    font-size: .32rem
-    color: #ccc
-    text-align: center
-    line-height: 1rem
-  .shops
+  .goods
     padding: 0 .2rem
+    .non
+      font-size: .32rem
+      color: #ccc
+      text-align: center
+      line-height: 1rem
     .shop
       display: flex
       padding: .15rem 0
@@ -91,9 +95,9 @@ export default {
             flex: 1
             line-height: .4rem
             font-size: .32rem
-            color: #333
             ellipsis()
           .back-icon
+            float:right
             color: $grayColor
         .content
           height: .5rem
@@ -101,12 +105,22 @@ export default {
           color: $grayColor
           ellipsis()
         .range
-          color: $grayColor
-          padding-top: .13rem
+          color: red
+          font-size: .32rem
+          padding-top: 0.1rem
+          font-weight: bold
+          .range-left
+            font-size: .25rem
+          .range-right
+            float: right
+            color: $grayColor
+            font-size: .25rem
+            font-weight: normal
+            .back-icon
+              padding-right: .05rem
       .details
-        line-height: 1.4rem
+        line-height: 1.2rem
         float: right
-        font-size: .36rem
+        font-size: .18rem
         color: $grayColor
-        padding: 0 .1rem 0 .2rem
 </style>

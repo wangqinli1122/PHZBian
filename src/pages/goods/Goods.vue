@@ -11,6 +11,9 @@
       :goodsprice="goodsprice"
       :lat="lat"
       :lng="lng"
+      :range="range"
+      :isFinish="isFinish"
+      @handleStoreUp="storeUp"
     ></goods-info>
     <div style="height:20rem;"></div>
   </div>
@@ -21,6 +24,7 @@ import GoodsHeader from './components/Header'
 import GoodsSwiper from './components/Swiper'
 import GoodsInfo from './components/Info'
 import axios from 'axios'
+import BMap from 'BMap'
 export default {
   name: 'Goods',
   components: {
@@ -38,7 +42,9 @@ export default {
       goodsimg: [],
       content: '',
       lat: '',
-      lng: ''
+      lng: '',
+      range: '',
+      isFinish: false
     }
   },
   methods: {
@@ -62,6 +68,62 @@ export default {
         this.content = data.content
         this.lat = data.lat
         this.lng = data.lng
+        if (localStorage.goodsList) {
+          let storeList = JSON.parse(localStorage.goodsList)
+          storeList.forEach((e) => {
+            if (parseInt(this.$route.params.id) === parseInt(e.id)) this.isFinish = true
+          })
+        }
+        this.getRange()
+      }
+    },
+    getRange () {
+      let map = new BMap.Map('map')
+      let pointA
+      try {
+        if (localStorage.lng) {
+          pointA = new BMap.Point(localStorage.lng, localStorage.lat)
+        } else {
+          pointA = new BMap.Point(this.$store.state.addr.lng, this.$store.state.addr.lat)
+        }
+      } catch (e) {}
+      let pointB = new BMap.Point(this.lng, this.lat)
+      let range = map.getDistance(pointA, pointB)
+      if (parseInt(range) > 1000) {
+        range = (Math.round(range) / 1000).toFixed(2) + 'km'
+      } else {
+        range = parseInt(range) + 'm'
+      }
+      this.range = range
+    },
+    storeUp () {
+      let goods = []
+      let status = true
+      let goodsInfo = {
+        id: this.$route.params.id,
+        name: this.goodsname,
+        address: this.shopAddress,
+        tel: this.shopTel,
+        img: this.goodsimg[0],
+        price: this.goodsprice,
+        lng: this.lng,
+        lat: this.lat,
+        range: 0
+      }
+      goods.push(goodsInfo)
+      if (localStorage.goodsList) {
+        let storeList = JSON.parse(localStorage.goodsList)
+        storeList.forEach(function (e) {
+          if (parseInt(goodsInfo.id) === parseInt(e.id)) status = false
+        })
+        if (status) {
+          storeList = storeList.concat(goods)
+          localStorage.goodsList = JSON.stringify(storeList)
+          this.isFinish = true
+        }
+      } else {
+        localStorage.goodsList = JSON.stringify(goods)
+        this.isFinish = true
       }
     }
   },

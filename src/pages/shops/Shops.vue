@@ -8,6 +8,8 @@
       :tel="shopTel"
       :range="shopRange"
       :isFinish="isFinish"
+      :lng="lng"
+      :lat="lat"
       @handleStoreUp="storeUp">
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
@@ -90,7 +92,7 @@ export default {
       if (parseInt(range) > 1000) {
         range = (Math.round(range) / 1000).toFixed(2) + 'km'
       } else {
-        range = range + 'm'
+        range = parseInt(range) + 'm'
       }
       this.shopRange = range
     },
@@ -120,6 +122,7 @@ export default {
         }
       } else {
         localStorage.shopList = JSON.stringify(shop)
+        this.isFinish = true
       }
     },
     getShowShare (value) {
