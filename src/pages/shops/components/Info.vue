@@ -1,11 +1,12 @@
 <template>
   <div class="info">
+    <span class="iconfont store_up" :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>
     <h3 class="name">{{this.name}}</h3>
     <div class="content border-topbottom">
       <span class="iconfont content-left border-right">&#xe655;</span>
       <div class="center">
         <h4 class="title">{{this.address}}</h4>
-        <p class="desc">距离我{{this.shopRange}}</p>
+        <p class="desc">距离我{{this.range}}</p>
       </div>
       <a class="iconfont content-right border-left" href="tel:18688888888">&#xe60f;</a>
     </div>
@@ -19,17 +20,14 @@ export default {
   props: {
     name: String,
     address: String,
-    tel: String
+    tel: String,
+    range: String,
+    isFinish: Boolean
   },
-  data () {
-    return {
-      shopRange: '1'
+  methods: {
+    handleStore () {
+      this.$emit('handleStoreUp')
     }
-  },
-  mounted () {
-    this.bus.$on('getRange', (msg) => {
-      this.shopRange = msg
-    })
   }
 }
 </script>
@@ -54,6 +52,13 @@ export default {
     line-height: .8rem
     padding-left: .2rem
     font-weight: bold
+    display: inline-block
+  .store_up
+    font-size: .36rem
+    color: $grayColor
+    padding-left: .2rem
+  .store_finish
+    color: red
   .content
     display: flex
     .content-left

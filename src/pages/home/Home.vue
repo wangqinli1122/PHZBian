@@ -12,7 +12,7 @@
     <common-share :isShowShare="showShareValue"></common-share>
     <div class="non" v-show="!non" @click="clickMore">加载更多内容</div>
     <div class="non" v-show="non">暂无更多相关内容</div>
-    <map-city></map-city>
+    <map-city @getHome="getHomeInfo"></map-city>
   </div>
 </template>
 
@@ -34,7 +34,6 @@ export default {
       swiperList: [],
       userinfo: {},
       showShareValue: '',
-      addr: {},
       page: 1,
       non: false
     }
@@ -51,11 +50,11 @@ export default {
     getHomeInfo () {
       axios.get('/home/index/getHomeList', {
         params: {
-          lng: this.addr.lng,
-          lat: this.addr.lat,
-          pro: this.addr.pro,
-          city: this.addr.city,
-          dis: this.addr.dis,
+          lng: this.$store.state.addr.lng,
+          lat: this.$store.state.addr.lat,
+          pro: this.$store.state.addr.pro,
+          city: this.$store.state.addr.city,
+          dis: this.$store.state.addr.dis,
           page: this.page
         }
       }).then(this.getHomeInfoSucc)
@@ -94,14 +93,6 @@ export default {
       this.page = parseInt(this.page) + 1
       this.getHomeInfo()
     }
-  },
-  mounted () {
-    this.bus.$on('getAddr', (msg) => {
-      this.addr = msg
-      this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
-      this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
-      this.getHomeInfo()
-    })
   }
 }
 </script>

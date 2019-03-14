@@ -11,9 +11,9 @@ export default {
       addr: {
         pro: '四川',
         city: '成都',
-        dis: '龙泉驿区',
-        lng: 116.40387397,
-        lat: 39.91488908
+        dis: '青羊区',
+        lng: 104.06792346,
+        lat: 30.67994285
       }
     }
   },
@@ -32,7 +32,10 @@ export default {
           this.addr.pro = r.address.province
           this.addr.city = r.address.city
           this.addr.dis = r.address.district
-          this.bus.$emit('getAddr', this.addr)
+          this.addr.pro = this.addr.pro.slice(0, this.addr.pro.length - 1)
+          this.addr.city = this.addr.city.slice(0, this.addr.city.length - 1)
+          this.$store.commit('changeAddr', this.addr)
+          this.$emit('getHome')
           let markers = new BMap.Marker(r.point)
           map.addOverlay(markers)
           map.panTo(r.point)

@@ -5,7 +5,10 @@
     <shops-info
       :name="shopName"
       :address="shopAddress"
-      :tel="shopTel">
+      :tel="shopTel"
+      :range="shopRange"
+      :isFinish="isFinish"
+      @handleStoreUp="storeUp">
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
     <shops-goods :list="goods"></shops-goods>
@@ -20,6 +23,7 @@ import ShopsInfo from './components/Info'
 import ShopsGoods from './components/Goods'
 import CommonShare from '@/pages/common/share/Share'
 import axios from 'axios'
+import BMap from 'BMap'
 export default {
   name: 'Shops',
   data () {
@@ -28,8 +32,12 @@ export default {
       shopAddress: '',
       shopTel: '',
       shopImg: '',
+      shopRange: '',
       goods: [],
-      showShareValue: ''
+      showShareValue: '',
+      lng: '',
+      lat: '',
+      isFinish: false
     }
   },
   components: {
@@ -40,14 +48,14 @@ export default {
     CommonShare
   },
   methods: {
-    getHomeInfo () {
+    getShopInfo () {
       axios.get('/home/index/getMersInfo', {
         params: {
           id: this.$route.params.id
         }
-      }).then(this.getHomeInfoSucc)
+      }).then(this.getShopInfoSucc)
     },
-    getHomeInfoSucc (res) {
+    getShopInfoSucc (res) {
       res = res.data
       if (res.ret === true) {
         const data = res.data
@@ -56,6 +64,62 @@ export default {
         this.shopAddress = data.shopAddress
         this.shopTel = data.shopTel
         this.shopImg = data.shopImg
+        this.lng = data.lng
+        this.lat = data.lat
+        if (localStorage.shopList) {
+          let storeList = JSON.parse(localStorage.shopList)
+          storeList.forEach((e) => {
+            if (parseInt(this.$route.params.id) === parseInt(e.id)) this.isFinish = true
+          })
+        }
+        this.getRange()
+      }
+    },
+    getRange () {
+      let map = new BMap.Map('map')
+      let pointA
+      try {
+        if (localStorage.lng) {
+          pointA = new BMap.Point(localStorage.lng, localStorage.lat)
+        } else {
+          pointA = new BMap.Point(this.$store.state.addr.lng, this.$store.state.addr.lat)
+        }
+      } catch (e) {}
+      let pointB = new BMap.Point(this.lng, this.lat)
+      let range = map.getDistance(pointA, pointB)
+      if (parseInt(range) > 1000) {
+        range = (Math.round(range) / 1000).toFixed(2) + 'km'
+      } else {
+        range = range + 'm'
+      }
+      this.shopRange = range
+    },
+    storeUp () {
+      let shop = []
+      let status = true
+      let shopInfo = {
+        id: this.$route.params.id,
+        name: this.shopName,
+        address: this.shopAddress,
+        tel: this.shopTel,
+        img: this.shopImg,
+        lng: this.lng,
+        lat: this.lat,
+        range: 0
+      }
+      shop.push(shopInfo)
+      if (localStorage.shopList) {
+        let storeList = JSON.parse(localStorage.shopList)
+        storeList.forEach(function (e) {
+          if (parseInt(shopInfo.id) === parseInt(e.id)) status = false
+        })
+        if (status) {
+          storeList = storeList.concat(shop)
+          localStorage.shopList = JSON.stringify(storeList)
+          this.isFinish = true
+        }
+      } else {
+        localStorage.shopList = JSON.stringify(shop)
       }
     },
     getShowShare (value) {
@@ -66,7 +130,7 @@ export default {
     }
   },
   mounted () {
-    this.getHomeInfo()
+    this.getShopInfo()
     this.goodsName = ''
   }
 }

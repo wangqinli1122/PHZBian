@@ -70,8 +70,8 @@ export default {
           name: 'ShopSearch',
           params: {
             name: this.content,
-            lng: 104,
-            lat: 30,
+            lng: this.$store.state.addr.lng,
+            lat: this.$store.state.addr.lat,
             page: 1
           }
         })
@@ -83,8 +83,8 @@ export default {
           name: 'GoodsSearch',
           params: {
             name: this.goodContent,
-            lng: 104,
-            lat: 30,
+            lng: this.$store.state.addr.lng,
+            lat: this.$store.state.addr.lat,
             page: 1
           }
         })

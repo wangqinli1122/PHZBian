@@ -1,6 +1,6 @@
 <template>
   <div class="shops">
-    <div class="shop border-bottom" @click="handleGetRange(item.id, item.range)" v-for="item of list" :key="item.id">
+    <div class="shop border-bottom" @click="handleGetRange(item.id)" v-for="item of list" :key="item.id">
       <div class="img-box">
         <img :src="item.img" class="img">
       </div>
@@ -31,10 +31,7 @@ export default {
     hanldeClickA (e) {
       e.stopPropagation()
     },
-    handleGetRange (id, ra) {
-      setTimeout(() => {
-        this.bus.$emit('getRange', ra)
-      }, 30)
+    handleGetRange (id) {
       this.$router.push({
         name: 'Shops',
         params: { id: id }

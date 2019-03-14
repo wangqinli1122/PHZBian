@@ -80,12 +80,12 @@ export default {
         padding-right: .2rem
         float: left
         color: $grayColor
-        font-size: .2rem
         .back-icon
           font-size: .36rem
       .header-center
         display: inline-block
         color: $grayColor
+        font-size: .36rem
       .header-right
         float: right
         color: $grayColor

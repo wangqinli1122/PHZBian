@@ -1,81 +1,93 @@
 <template>
   <div>
-    <h3 class="main-title">收藏页面</h3>
-    <div class="shops">
-    <router-link :to="'/shops/'+ item.id" class="shop border-bottom" v-for="item of list" :key="item.id">
-      <div class="img-box">
-        <img :src="item.img" class="img">
-      </div>
-      <div class="info">
-        <div class="title-box">
-          <h4 class="title">{{item.name}}</h4>
-          <a class="iconfont back-icon" :href="'tel:'+item.tel" @click="hanldeClickA">&#xe60f;</a>
-        </div>
-        <p class="content">{{item.address}}</p>
-        <div class="range"><span class="iconfont">&#xe655;</span>{{item.range}}</div>
-      </div>
-      <span class="iconfont details">&#xe60a;</span>
-    </router-link>
-  </div>
+    <collect-header @switchShow="handleSwitchShow"></collect-header>
+    <div class="title"></div>
+    <collect-shops :list="shopsList" @delShop="handleDelShop" v-show="isListShow"></collect-shops>
+    <div class="nones" v-show="isShow">暂无收藏内容</div>
   </div>
 </template>
 
 <script>
+import CollectHeader from './components/Header'
+import CollectGoods from '@/pages/goodsSearch/components/Goods'
+import CollectShops from './components/Shops'
+import BMap from 'BMap'
 export default {
-  name: 'Collect'
+  name: 'Collect',
+  components: {
+    CollectHeader,
+    CollectGoods,
+    CollectShops
+  },
+  data () {
+    return {
+      shopsList: [],
+      isShow: false,
+      isListShow: true
+    }
+  },
+  methods: {
+    getStoreUpList () {
+      let map = new BMap.Map('map')
+      let pointA
+      try {
+        if (localStorage.lng) {
+          pointA = new BMap.Point(localStorage.lng, localStorage.lat)
+        } else {
+          pointA = new BMap.Point(this.$store.state.addr.lng, this.$store.state.addr.lat)
+        }
+      } catch (e) {}
+      if (localStorage.shopList) {
+        this.shopsList = JSON.parse(localStorage.shopList)
+        this.shopsList.forEach(function (c) {
+          let pointB = new BMap.Point(c.lng, c.lat)
+          c.range = map.getDistance(pointA, pointB)
+          if (parseInt(c.range) > 1000) {
+            c.range = (Math.round(c.range) / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
+        this.isShow = false
+        if (localStorage.shopList === '[]') {
+          this.isShow = true
+        }
+      } else {
+        this.isShow = true
+      }
+    },
+    handleDelShop (id) {
+      let shopList = JSON.parse(localStorage.shopList)
+      shopList.forEach((e, index) => {
+        if (parseInt(e.id) === parseInt(id)) {
+          shopList.splice(index, 1)
+          localStorage.shopList = JSON.stringify(shopList)
+          this.getStoreUpList()
+        }
+      })
+    },
+    handleSwitchShow (status) {
+      if (status) {
+        this.isListShow = true
+      } else {
+        this.isListShow = false
+      }
+    }
+  },
+  mounted () {
+    this.getStoreUpList()
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
-  @import '~styles/mixins.styl'
-  .main-title
-    line-height: .8rem
-    padding-left: .2rem
+  .title
+    padding-top: .2rem
+    height: $headerHeight
+  .nones
     font-size: .32rem
-    font-weight: normal
-  .border-bottom
-    &:before
-      border-color: #ccc
-  .shops
-    padding: 0 .2rem
-    .shop
-      display: flex
-      padding: .15rem 0
-      .img-box
-        width: 1.2rem
-        height: 1.2rem
-        float: left
-        margin-right: .15rem
-        overflow: hidden
-        text-align: center
-        .img
-          height: 100%
-          margin: 0 -100%
-      .info
-        flex: 1
-        min-width: 0
-        .title-box
-          display: flex
-          .title
-            flex: 1
-            line-height: .4rem
-            font-size: .32rem
-            color: #333
-            ellipsis()
-          .back-icon
-            color: $grayColor
-        .content
-          height: .5rem
-          line-height: .5rem
-          color: $grayColor
-          ellipsis()
-        .range
-          color: $grayColor
-          font-size: .18rem
-      .details
-        line-height: 1.2rem
-        float: right
-        font-size: .18rem
-        color: $grayColor
+    color: #ccc
+    text-align: center
+    line-height: 1rem
 </style>
