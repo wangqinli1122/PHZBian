@@ -1,9 +1,9 @@
 <template>
   <div class="header">
-    <div class="header-login" @click="handleClickLogin">
+    <!-- <div class="header-login" @click="handleClickLogin">
       <span class="iconfont back-icon">&#xe62f;</span>
       <span class="header-login-name">登录</span>
-    </div>
+    </div> -->
     <div class="header-search">
       <input type="text" class="header-search-input" v-show="isShow" :style="opacityStyle">
       <span class="iconfont back-icon" v-show="isShow" :style="opacityStyle">&#xe6aa;</span>
