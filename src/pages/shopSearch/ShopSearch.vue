@@ -45,6 +45,13 @@ export default {
       res = res.data
       if (res.ret === true) {
         const data = res.data
+        data.merchantList.forEach(function (c) {
+          if (c.range > 1000) {
+            c.range = (c.range / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
         this.shops = this.shops.concat(data.merchantList)
         if (this.shops.length < 1) {
           this.non = true
@@ -56,21 +63,14 @@ export default {
         } else {
           this.non = false
         }
-        this.shops.forEach(function (c) {
-          if (c.range > 1000) {
-            c.range = (c.range / 1000).toFixed(2) + 'km'
-          } else {
-            c.range = c.range + 'm'
-          }
-        })
       }
     },
     getShowShare (value) {
       this.showShareValue = value
     },
     getSearchName (value) {
-      console.log(value)
       this.shopName = value
+      this.shops = []
       this.getShopList()
     },
     clickMore () {

@@ -7,13 +7,13 @@
         <span class="iconfont back-icon" style="padding-left: .2rem">&#xe655;</span>{{this.range}}
       </div>
     </div>
-    <h3 class="name">{{this.gName}}</h3>
+    <h3 class="name">{{this.sName}}</h3>
     <p class="goodsDesc">外套男士</p>
     <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
       <span class="iconfont content-left border-right">&#xe633;</span>
       <div class="center" @click="handleClickNavigation">
-        <h4 class="title">{{this.sName}}</h4>
+        <h4 class="title">{{this.gName}}</h4>
         <p class="desc">{{this.sAddr}}</p>
       </div>
       <a class="iconfont content-right border-left" :href="'tel:' + sTel">&#xe60f;</a>

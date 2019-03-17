@@ -4,10 +4,8 @@
     <div class="search-box">
       <div class="search_switch">
         <div :class="[selectClass, activeClass]" @click="handleClickSelect">商品
-          <div class="search-cover" v-show="active"></div>
         </div>
         <div :class="[selectClass, notactiveClass]" @click="handleClickSelect">店铺
-          <div class="search-cover" v-show="!active"></div>
         </div>
       </div>
       <div class="search-b" v-show="active">
@@ -20,10 +18,12 @@
       </div>
     </div>
     <ul class="search-common" v-show="active">
-      <li class="common border-bottom" v-for="item of hotGoodsList" :key="item.id" @click="handleClickHotGoods">{{item.msg}}</li>
+      <li class="common" style="margin:0">热门搜索：</li>
+      <li class="common" v-for="item of hotGoodsList" :key="item.id" @click="handleClickHotGoods">{{item.msg}}</li>
     </ul>
     <ul class="search-common" v-show="!active">
-      <li class="common border-bottom" v-for="item of hotShopsList" :key="item.id" @click="handleClickHotShop">{{item.msg}}</li>
+      <li class="common" style="margin:0">热门搜索：</li>
+      <li class="common" v-for="item of hotShopsList" :key="item.id" @click="handleClickHotShop">{{item.msg}}</li>
     </ul>
   </div>
 </template>
@@ -108,16 +108,15 @@ export default {
     &:before
       border-color: #ccc
   .search
-    margin-top: 1.08rem
+    margin-top: 1.4rem
     text-align: center
     .logo
       width: 3.8rem
-      margin-bottom: .45rem
+      margin-bottom: 1rem
     .search-box
       position: relative
       margin: .4rem .2rem 0
-      box-shadow: 0 0 .1rem #ccc
-      border: 1px #eee solid;
+      border: 1px #ccc solid
       input::-webkit-input-placeholder { /* WebKit browsers */
         color: $grayColor;
       }
@@ -132,42 +131,35 @@ export default {
       }
       .search_switch
         position: absolute
-        top: -.56rem
-        left: 0
+        top: -.62rem
+        left: -1px
         z-index: 1
         .search_selected
-          position: relative
           display: inline-block
-          height: .36rem
-          line-height: .36rem
-          padding: .1rem .2rem
-          box-shadow: 0 0 .06rem #ccc
-          color: #444
-        .search-cover
-          height: .15rem
-          position: absolute
-          bottom: -.05rem
-          left: 0
-          right: 0
-          z-index: 2
-          background: #fff
+          height: .6rem
+          line-height: .6rem
+          padding: 0 .2rem
+          font-size: .28rem
+          background: #ccc
+          color: #fff
         .active
-          background: #ddd
+          color: $grayColor
+          background: #fff
       .search-b
         display: flex
         .search-text
           flex: 1
-          height: .6rem
-          line-height: .6rem
+          height: .66rem
+          line-height: .66rem
           width: 100%
           text-indent: .2rem
           color: $grayColor
         .search-button
           width: .8rem
-          height: .6rem
-          line-height: .6rem
-          background: $bgColor
-          color: white
+          height: .66rem
+          line-height: .66rem
+          background: #fff
+          color: $grayColor
           .back-icon
             font-size: .32rem
     .search-common
@@ -176,8 +168,8 @@ export default {
       .common
         float: left
         text-align: center
-        padding: .08rem
+        padding: .04rem
         margin-right: .2rem
-        font-size: .3rem
-        color: $grayColor
+        font-family: '宋体'
+        color: #888
 </style>

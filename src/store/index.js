@@ -16,8 +16,10 @@ export default new Vuex.Store({
   mutations: {
     changeAddr (state, addr) {
       state.addr = addr
-      localStorage.lng = addr.lng
-      localStorage.lat = addr.lat
+      try {
+        localStorage.lng = addr.lng
+        localStorage.lat = addr.lat
+      } catch (e) {}
     }
   }
 })

@@ -101,7 +101,7 @@ export default {
       let status = true
       let goodsInfo = {
         id: this.$route.params.id,
-        name: this.goodsname,
+        name: this.shopName,
         address: this.shopAddress,
         tel: this.shopTel,
         img: this.goodsimg[0],

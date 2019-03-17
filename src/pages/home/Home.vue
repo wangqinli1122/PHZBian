@@ -66,24 +66,24 @@ export default {
         this.hot_mers = data.hot_mers
         this.hot_shops = data.hot_shops
         this.swiperList = data.swiperList
-        this.shops = this.shops.concat(data.merchantList)
-        if (this.shops.length < 1) {
-          this.non = true
-        } else {
-          this.non = false
-        }
-        if (data.merchantList.length < 10) {
-          this.non = true
-        } else {
-          this.non = false
-        }
-        this.shops.forEach(function (c) {
+        data.merchantList.forEach(function (c) {
           if (c.range > 1000) {
             c.range = (c.range / 1000).toFixed(2) + 'km'
           } else {
             c.range = c.range + 'm'
           }
         })
+        this.shops = this.shops.concat(data.merchantList)
+        if (this.shops.length < 1) {
+          this.non = true
+        } else {
+          this.non = false
+        }
+        if (data.merchantList.length < 5) {
+          this.non = true
+        } else {
+          this.non = false
+        }
       }
     },
     getShowShare (value) {

@@ -46,6 +46,13 @@ export default {
       res = res.data
       if (res.ret === true) {
         const data = res.data
+        data.goodsList.forEach(function (c) {
+          if (c.range > 1000) {
+            c.range = (c.range / 1000).toFixed(2) + 'km'
+          } else {
+            c.range = c.range + 'm'
+          }
+        })
         this.goods = this.goods.concat(data.goodsList)
         if (this.goods.length < 1) {
           this.non = true
@@ -57,13 +64,6 @@ export default {
         } else {
           this.non = false
         }
-        this.goods.forEach(function (c) {
-          if (c.range > 1000) {
-            c.range = (c.range / 1000).toFixed(2) + 'km'
-          } else {
-            c.range = c.range + 'm'
-          }
-        })
       }
     },
     getShowShare (value) {
@@ -71,6 +71,7 @@ export default {
     },
     getSearchName (value) {
       this.shopName = value
+      this.goods = []
       this.getGoodsList()
     },
     clickMore () {
