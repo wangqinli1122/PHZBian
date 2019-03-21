@@ -2,7 +2,7 @@
   <div>
     <home-header @showShare="getShowShare"></home-header>
     <home-search :hotShopsList="hot_mers" :hotGoodsList="hot_shops"></home-search>
-    <home-swiper :list="swiperList"></home-swiper>
+    <home-swiper :list="swiperList" v-show="isShowSwiper"></home-swiper>
     <h3 class="title border-bottom">
       <span>——</span>
       周边商家
@@ -35,7 +35,8 @@ export default {
       userinfo: {},
       showShareValue: '',
       page: 1,
-      non: false
+      non: false,
+      isShowSwiper: 1
     }
   },
   components: {
@@ -65,6 +66,7 @@ export default {
         const data = res.data
         this.hot_mers = data.hot_mers
         this.hot_shops = data.hot_shops
+        this.isShowSwiper = data.isshow
         this.swiperList = data.swiperList
         data.merchantList.forEach(function (c) {
           if (c.range > 1000) {
