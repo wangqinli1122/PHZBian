@@ -5,8 +5,8 @@
         <span class="iconfont back-icon">&#xe617;</span>
       </router-link>
       <div class="header-fixed-right">
-        <router-link to="/collect" tag="span" class="iconfont list-icon">&#xe687;</router-link>
-        <span class="iconfont list-icon">&#xe626;</span>
+        <router-link to="/house" tag="span" class="iconfont list-icon">&#xe687;</router-link>
+        <span class="iconfont list-icon" @click="showShare">&#xe626;</span>
         <router-link to="/" tag="span" class="iconfont list-icon">&#xe627;</router-link>
       </div>
     </div>
@@ -16,8 +16,8 @@
       </router-link>
       <div class="header-center">商品详情</div>
       <div class="header-right">
-        <router-link to="/collect" tag="span" class="iconfont list-icon">&#xe687;</router-link>
-        <span class="iconfont list-icon">&#xe626;</span>
+        <router-link to="/house" tag="span" class="iconfont list-icon">&#xe687;</router-link>
+        <span class="iconfont list-icon" @click="showShare">&#xe626;</span>
         <router-link to="/" tag="span" class="iconfont list-icon">&#xe627;</router-link>
       </div>
     </div>
@@ -32,7 +32,8 @@ export default {
       opacityStyle: {
         opacity: 0
       },
-      showHeader: true
+      showHeader: true,
+      isShowShare: false
     }
   },
   methods: {
@@ -46,10 +47,15 @@ export default {
       } else {
         this.showHeader = true
       }
+    },
+    showShare () {
+      this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
+      this.$emit('showShare', this.isShowShare)
     }
   },
   mounted () {
     window.addEventListener('scroll', this.handleScroll)
+    this.$emit('showShare', this.isShowShare)
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <goods-header></goods-header>
+    <goods-header @showShare="getShowShare"></goods-header>
     <goods-swiper :list="goodsimg"></goods-swiper>
     <goods-info
       :sName="shopName"
@@ -15,6 +15,7 @@
       :isFinish="isFinish"
       @handleStoreUp="storeUp"
     ></goods-info>
+    <common-share :isShowShare="showShareValue"></common-share>
     <div style="height:20rem;"></div>
   </div>
 </template>
@@ -23,17 +24,20 @@
 import GoodsHeader from './components/Header'
 import GoodsSwiper from './components/Swiper'
 import GoodsInfo from './components/Info'
+import CommonShare from '@/pages/common/share/Share'
 import axios from 'axios'
 import BMap from 'BMap'
 export default {
   name: 'Goods',
   components: {
+    CommonShare,
     GoodsHeader,
     GoodsSwiper,
     GoodsInfo
   },
   data () {
     return {
+      showShareValue: '',
       shopName: '',
       shopAddress: '',
       shopTel: '',
@@ -125,6 +129,9 @@ export default {
         localStorage.goodsList = JSON.stringify(goods)
         this.isFinish = true
       }
+    },
+    getShowShare (value) {
+      this.showShareValue = value
     }
   },
   mounted () {

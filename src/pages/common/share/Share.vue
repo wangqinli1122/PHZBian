@@ -12,12 +12,12 @@ export default {
     return {
       isShowShareValue: '',
       config: {
-        url: '',
+        url: 'https://phzbian.com',
         source: '',
-        title: '',
-        description: '',
+        title: '品汇周边',
+        description: '品汇周边',
         image: '',
-        disabled: ['google', 'facebook', 'twitter'],
+        disabled: ['tencent', 'linkedin', 'diandian', 'google', 'facebook', 'twitter'],
         wechatQrcodeTitle: '微信扫一扫：分享',
         wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
       }

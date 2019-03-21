@@ -11,7 +11,7 @@ import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
-import 'vue-social-share/dist/client.css'
+import 'styles/client.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
