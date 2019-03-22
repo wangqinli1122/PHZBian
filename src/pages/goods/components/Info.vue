@@ -24,7 +24,7 @@
       商品详情
       <span>——</span>
     </h3>
-    <div class="container">{{this.content}}</div>
+    <div class="container" v-html="this.content"></div>
   </div>
 </template>
 

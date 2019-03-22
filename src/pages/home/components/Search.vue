@@ -140,7 +140,7 @@ export default {
           line-height: .6rem
           padding: 0 .2rem
           font-size: .28rem
-          background: #ccc
+          background: $bgColor
           color: #fff
         .active
           color: $grayColor
@@ -159,7 +159,7 @@ export default {
           height: .66rem
           line-height: .66rem
           background: #fff
-          color: $grayColor
+          color: $bgColor
           .back-icon
             font-size: .32rem
     .search-common

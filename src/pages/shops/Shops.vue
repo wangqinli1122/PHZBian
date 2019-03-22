@@ -15,6 +15,7 @@
     <h3 class="main-title">店铺商品</h3>
     <shops-goods :list="goods"></shops-goods>
     <common-share :isShowShare="showShareValue"></common-share>
+    <div style="height:1rem;"></div>
   </div>
 </template>
 

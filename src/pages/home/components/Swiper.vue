@@ -3,7 +3,7 @@
     <div class="home-swiper">
       <swiper :options="swiperOption" v-if="list.length">
         <!-- slides -->
-        <swiper-slide v-for="item of list" :key="item.id"><img class="swiper-img" :src="item.imgUrl"></swiper-slide>
+        <swiper-slide v-for="item of list" :key="item.id"><img class="swiper-img" @click="handleClickUrl(item.link)" :src="item.imgUrl"></swiper-slide>
       </swiper>
     </div>
     <!-- Optional controls -->
@@ -24,6 +24,11 @@ export default {
         loop: true,
         autoplay: 3000
       }
+    }
+  },
+  methods: {
+    handleClickUrl (link) {
+      window.location.href = link
     }
   }
 }

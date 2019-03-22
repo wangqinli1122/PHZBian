@@ -14,6 +14,7 @@
     <ul class="header-float" v-show="showList">
       <router-link to="/house/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
+      <li class="list border-bottom" @click="getAdminLink"><span class="iconfont list-icon">&#xe62f;</span>商户</li>
       <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
     </ul>
   </div>
@@ -33,6 +34,9 @@ export default {
     }
   },
   methods: {
+    getAdminLink () {
+      window.location.href = 'https://www.phzbian.com/admin/actions/adlogin'
+    },
     handleClickLogin () {
       this.$router.push('/home/index/wxLogin')
     },
@@ -109,7 +113,7 @@ export default {
       padding-right: .1rem
       display: flex
       float: left
-      color: $grayColor
+      color: $bgColor
       font-size: .30rem
       .back-icon
         font-size: .4rem
@@ -137,12 +141,12 @@ export default {
       width: .56rem
       padding-left: .2rem
       float: right
-      color: $grayColor
+      color: $bgColor
       .back-icon
         font-size: .4rem
     .header-float
       width: 1.2rem
-      height: 2.1rem
+      height: 2.8rem
       padding: .2rem .3rem
       border-radius: .08rem
       background: $grayColor

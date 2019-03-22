@@ -16,7 +16,6 @@
       @handleStoreUp="storeUp"
     ></goods-info>
     <common-share :isShowShare="showShareValue"></common-share>
-    <div style="height:20rem;"></div>
   </div>
 </template>
 
