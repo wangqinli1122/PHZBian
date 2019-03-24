@@ -68,6 +68,13 @@ export default {
         this.goodsname = data.goodsname
         this.goodsprice = data.goodsprice
         this.goodsimg = data.goodsimg
+        for (var i = 0; i < this.goodsimg.length; i++) {
+          if (typeof this.goodsimg[i] !== 'string') {
+            this.goodsimg.splice(i, 1)
+            i = i - 1
+          }
+        }
+        console.log(this.goodsimg)
         this.content = data.content
         this.lat = data.lat
         this.lng = data.lng
