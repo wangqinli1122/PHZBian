@@ -74,7 +74,6 @@ export default {
             i = i - 1
           }
         }
-        console.log(this.goodsimg)
         this.content = data.content
         this.lat = data.lat
         this.lng = data.lng
