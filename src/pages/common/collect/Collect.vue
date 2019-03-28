@@ -101,9 +101,24 @@ export default {
       }
     }
   },
+  computed: {
+    getLocationPage () {
+      return this.$store.state.addr.lng
+    }
+  },
+  watch: {
+    getLocationPage (cur, old) {
+      this.getShopList()
+      this.getGoodsList()
+    }
+  },
   mounted () {
-    this.getShopList()
-    this.getGoodsList()
+    if (this.$store.state.addr.lng) {
+      this.getShopList()
+      this.getGoodsList()
+    } else {
+      this.$store.commit('getLocation')
+    }
   }
 }
 </script>

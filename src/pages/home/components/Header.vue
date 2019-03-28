@@ -11,7 +11,7 @@
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
-    <ul class="header-float" v-show="showList">
+    <ul class="header-float" v-show="this.$store.state.showIcon">
       <router-link to="/house/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <li class="list border-bottom" @click="getAdminLink"><span class="iconfont list-icon">&#xe62f;</span>商户</li>
@@ -25,7 +25,6 @@ export default {
   name: 'HomeHeader',
   data () {
     return {
-      showList: false,
       isShowShare: false,
       isShow: false,
       opacityStyle: {
@@ -40,8 +39,9 @@ export default {
     handleClickLogin () {
       this.$router.push('/home/index/wxLogin')
     },
-    handleClickShowList () {
-      this.showList === false ? this.showList = true : this.showList = false
+    handleClickShowList (e) {
+      e.stopPropagation()
+      this.$store.state.showIcon === false ? this.$store.commit('changeShowIcon', true) : this.$store.commit('changeShowIcon', false)
     },
     handleScroll () {
       const top = document.documentElement.scrollTop

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" ref="wrapper">
+  <div>
     <ul class="goods content">
       <li @click="handleGetSee(item.id)" class="shop border-bottom" v-for="item of list" :key="item.id" ref="item.id">
         <div class="img-box">
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
   name: 'ShopsGoods',
@@ -54,9 +53,6 @@ export default {
     handleGetSeeSucc (res) {
       res = res.data
     }
-  },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.wrapper)
   }
 }
 </script>

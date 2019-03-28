@@ -11,8 +11,8 @@
     <p class="goodsDesc">外套男士</p>
     <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
-      <span class="iconfont content-left border-right">&#xe633;</span>
-      <div class="center" @click="handleClickNavigation">
+      <router-link :to="'/Shops/'+ this.mid" tag="span" class="iconfont content-left border-right">&#xe633;</router-link>
+      <div class="center"  @click="setMapShow">
         <h4 class="title">{{this.gName}}</h4>
         <p class="desc">{{this.sAddr}}</p>
       </div>
@@ -25,6 +25,15 @@
       <span>——</span>
     </h3>
     <div class="container" v-html="this.content"></div>
+    <div class="mapshade" @click="setMapHide" v-show="isShowMap"></div>
+    <div class="map" v-show="isShowMap">
+      <svg class="icon icon-map" aria-hidden="true" style="width: 1.3rem;height:1.3rem" @click="handleClickBaidu">
+        <use xlink:href="#iconbaiduditu"></use>
+      </svg>
+      <svg class="icon icon-map" aria-hidden="true" @click="handleClickGaode">
+        <use xlink:href="#icongaodeditu"></use>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -41,10 +50,27 @@ export default {
     lat: String,
     lng: String,
     range: String,
+    mid: String,
     isFinish: Boolean
   },
+  data () {
+    return {
+      isShowMap: false
+    }
+  },
   methods: {
-    handleClickNavigation () {
+    setMapHide () {
+      this.isShowMap = false
+    },
+    setMapShow () {
+      this.isShowMap = true
+    },
+    handleClickGaode () {
+      if (localStorage.lng) {
+        window.location.href = 'http://m.amap.com/navi/?start=' + localStorage.lng + ',' + localStorage.lat + '&dest=' + this.lng + ',' + this.lat + '&destName=' + this.gName + '&naviBy=car&key=6fedcd016f04de4d297e60149333ff0f&platform=mobile'
+      }
+    },
+    handleClickBaidu () {
       if (localStorage.lng) {
         window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + localStorage.lat + ',' + localStorage.lng + '|name:我的位置&destination=latlng:' + this.lat + ',' + this.lng + '|name:' + this.sAddr + '&mode=driving&region=成都&output=html&src=webapp.baidu.openAPIdemo'
       }
@@ -59,6 +85,35 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/variables.styl'
   @import '~styles/mixins.styl'
+  .mapshade
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    height: 100%
+    background: #000
+    opacity: .5
+    z-index: 100
+  .map
+    position: fixed
+    top: 50%
+    bottom: 0
+    left: 50%
+    right: 0
+    width: 6rem
+    height: 3rem
+    margin-top: -1.5rem
+    margin-left: -3rem
+    border-radius: .4rem
+    background: #fff
+    z-index: 101
+    .icon-map
+      width: 1.2rem
+      height: 1.2rem
+      padding-left: 1.1rem
+      padding-top: .9rem
   .border-topbottom
     &::after
       barder-color: #ccc
@@ -110,7 +165,7 @@ export default {
       line-height: .94rem
       margin: .1rem 0
       font-size: .36rem
-      color: $grayColor
+      color: $bgColor
     .center
       flex: 1
       min-width: 0

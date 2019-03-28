@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="setIconHide">
     <search-header @showShare="getShowShare" @searchName="getSearchName" :name="goodsName"></search-header>
     <h3 class="main-title">周边商品</h3>
     <search-goods :list="goods"></search-goods>
@@ -32,6 +32,9 @@ export default {
     SearchGoods
   },
   methods: {
+    setIconHide () {
+      this.$store.commit('changeShowIcon', false)
+    },
     getGoodsList () {
       axios.get('/home/index/searchShops', {
         params: {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="setIconHide">
     <shops-header @showShare="getShowShare"  @searchName="getSearchName"></shops-header>
     <shops-banner :img="shopImg"></shops-banner>
     <shops-info
@@ -14,8 +14,8 @@
     </shops-info>
     <h3 class="main-title">店铺商品</h3>
     <shops-goods :list="goods"></shops-goods>
-    <common-share :isShowShare="showShareValue"></common-share>
     <div style="height:1rem;"></div>
+    <common-share :isShowShare="showShareValue"></common-share>
   </div>
 </template>
 
@@ -51,6 +51,9 @@ export default {
     CommonShare
   },
   methods: {
+    setIconHide () {
+      this.$store.commit('changeShowIcon', false)
+    },
     getShopInfo () {
       axios.get('/home/index/getMersInfo', {
         params: {
@@ -85,6 +88,7 @@ export default {
         if (localStorage.lng) {
           pointA = new BMap.Point(localStorage.lng, localStorage.lat)
         } else {
+          this.$store.commit('getLocation')
           pointA = new BMap.Point(this.$store.state.addr.lng, this.$store.state.addr.lat)
         }
       } catch (e) {}
@@ -133,9 +137,24 @@ export default {
       this.goods = value
     }
   },
+  computed: {
+    getLocationPage () {
+      return this.$store.state.addr.lng
+    }
+  },
+  watch: {
+    getLocationPage (cur, old) {
+      this.getShopInfo()
+      this.goodsName = ''
+    }
+  },
   mounted () {
-    this.getShopInfo()
-    this.goodsName = ''
+    if (this.$store.state.addr.lng) {
+      this.getShopInfo()
+      this.goodsName = ''
+    } else {
+      this.$store.commit('getLocation')
+    }
   }
 }
 </script>

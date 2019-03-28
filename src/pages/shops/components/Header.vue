@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link to="" class="header-left" @click.native="$router.back(-1)">
+    <router-link to="/" class="header-left">
       <span class="iconfont back-icon">&#xe617;</span>
     </router-link>
     <div class="header-search">
@@ -10,7 +10,7 @@
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
-    <ul class="header-float" v-show="showList">
+    <ul class="header-float" v-show="this.$store.state.showIcon">
       <router-link to="/house/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
@@ -24,13 +24,13 @@ export default {
   name: 'ShopsHeader',
   data () {
     return {
-      showList: false,
       isShowShare: false
     }
   },
   methods: {
-    handleClickShowList () {
-      this.showList === false ? this.showList = true : this.showList = false
+    handleClickShowList (e) {
+      e.stopPropagation()
+      this.$store.state.showIcon === false ? this.$store.commit('changeShowIcon', true) : this.$store.commit('changeShowIcon', false)
     },
     showShare () {
       this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false

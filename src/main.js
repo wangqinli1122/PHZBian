@@ -12,6 +12,7 @@ import 'styles/border.css'
 import 'styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
 import 'styles/client.css'
+require('@/assets/styles/iconfont/iconfont.js')
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)

@@ -12,6 +12,7 @@
       :lat="lat"
       :lng="lng"
       :range="range"
+      :mid="mid"
       :isFinish="isFinish"
       @handleStoreUp="storeUp"
     ></goods-info>
@@ -47,6 +48,7 @@ export default {
       lat: '',
       lng: '',
       range: '',
+      mid: '',
       isFinish: false
     }
   },
@@ -62,6 +64,7 @@ export default {
       res = res.data
       if (res.ret === true) {
         const data = res.data
+        this.mid = data.mid
         this.shopName = data.shopName
         this.shopAddress = data.shopAddress
         this.shopTel = data.shopTel
@@ -139,8 +142,22 @@ export default {
       this.showShareValue = value
     }
   },
+  computed: {
+    getLocationPage () {
+      return this.$store.state.addr.lng
+    }
+  },
+  watch: {
+    getLocationPage (cur, old) {
+      this.getGoodsInfo()
+    }
+  },
   mounted () {
-    this.getGoodsInfo()
+    if (this.$store.state.addr.lng) {
+      this.getGoodsInfo()
+    } else {
+      this.$store.commit('getLocation')
+    }
   }
 }
 </script>

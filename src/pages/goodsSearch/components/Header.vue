@@ -10,7 +10,7 @@
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
     </div>
-    <ul class="header-float" v-show="showList">
+    <ul class="header-float" v-show="this.$store.state.showIcon">
       <router-link to="/house/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
       <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
@@ -26,13 +26,13 @@ export default {
   },
   data () {
     return {
-      showList: false,
       isShowShare: false
     }
   },
   methods: {
-    handleClickShowList () {
-      this.showList === false ? this.showList = true : this.showList = false
+    handleClickShowList (e) {
+      e.stopPropagation()
+      this.$store.state.showIcon === false ? this.$store.commit('changeShowIcon', true) : this.$store.commit('changeShowIcon', false)
     },
     showShare () {
       this.isShowShare === false ? this.isShowShare = true : this.isShowShare = false
@@ -81,18 +81,18 @@ export default {
       position: relative
       .header-search-input
         width: 100%
-        height: .48rem
+        height: .52rem
         padding-left: .5rem
         box-sizing: border-box
-        line-height: .48rem
+        line-height: .52rem
         border-radius: .04rem
-        font-size: .24rem
+        font-size: .28rem
         background: #fff
       .back-icon
-        font-size: .24rem
+        font-size: .32rem
         color: $grayColor
         position: absolute
-        top: .04rem
+        top: 0
         left: .08rem
     .header-list
       width: .56rem

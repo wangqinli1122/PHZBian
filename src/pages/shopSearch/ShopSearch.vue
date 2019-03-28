@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="setIconHide">
     <search-header @showShare="getShowShare" @searchName="getSearchName" :name="shopName"></search-header>
     <h3 class="main-title">周边商家</h3>
     <common-shops :list="shops"></common-shops>
@@ -31,6 +31,9 @@ export default {
     CommonShops
   },
   methods: {
+    setIconHide () {
+      this.$store.commit('changeShowIcon', false)
+    },
     getShopList () {
       axios.get('/home/index/searchMers', {
         params: {

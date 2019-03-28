@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="setIconHide">
     <home-header @showShare="getShowShare"></home-header>
     <home-search :hotShopsList="hot_mers" :hotGoodsList="hot_shops"></home-search>
     <home-swiper :list="swiperList" v-show="isShowSwiper"></home-swiper>
@@ -12,7 +12,6 @@
     <common-share :isShowShare="showShareValue"></common-share>
     <div class="non" v-show="!non" @click="clickMore">加载更多内容</div>
     <div class="non" v-show="non">暂无更多相关内容</div>
-    <map-city @getHome="getHomeInfo"></map-city>
   </div>
 </template>
 
@@ -22,7 +21,6 @@ import HomeSearch from './components/Search'
 import HomeSwiper from './components/Swiper'
 import CommonShops from '@/pages/common/shops/Shops'
 import CommonShare from '@/pages/common/share/Share'
-import MapCity from '@/pages/common/bmap/MapCity'
 import axios from 'axios'
 export default {
   name: 'Home',
@@ -44,10 +42,12 @@ export default {
     HomeSearch,
     HomeSwiper,
     CommonShops,
-    CommonShare,
-    MapCity
+    CommonShare
   },
   methods: {
+    setIconHide () {
+      this.$store.commit('changeShowIcon', false)
+    },
     getHomeInfo () {
       axios.get('/home/index/getHomeList', {
         params: {
@@ -94,6 +94,23 @@ export default {
     clickMore () {
       this.page = parseInt(this.page) + 1
       this.getHomeInfo()
+    }
+  },
+  computed: {
+    getLocationPage () {
+      return this.$store.state.addr.lng
+    }
+  },
+  watch: {
+    getLocationPage (cur, old) {
+      this.getHomeInfo()
+    }
+  },
+  mounted () {
+    if (this.$store.state.addr.lng) {
+      this.getHomeInfo()
+    } else {
+      this.$store.commit('getLocation')
     }
   }
 }
