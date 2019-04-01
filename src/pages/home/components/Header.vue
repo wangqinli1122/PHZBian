@@ -1,9 +1,9 @@
 <template>
   <div class="header">
-    <!-- <div class="header-login" @click="handleClickLogin">
+    <div class="header-login" @click="getAdminLink">
       <span class="iconfont back-icon">&#xe62f;</span>
-      <span class="header-login-name">登录</span>
-    </div> -->
+      <span class="header-login-name">商户</span>
+    </div>
     <div class="header-search">
       <input type="text" class="header-search-input" v-show="isShow" :style="opacityStyle">
       <span class="iconfont back-icon" v-show="isShow" :style="opacityStyle">&#xe6aa;</span>
@@ -14,7 +14,7 @@
     <ul class="header-float" v-show="this.$store.state.showIcon">
       <router-link to="/house/" tag="li" class="list border-bottom"><span class="iconfont list-icon">&#xe687;</span>收藏</router-link>
       <li class="list border-bottom" @click="showShare"><span class="iconfont list-icon">&#xe626;</span>分享</li>
-      <li class="list border-bottom" @click="getAdminLink"><span class="iconfont list-icon">&#xe62f;</span>商户</li>
+     <!--  <li class="list border-bottom" @click="getAdminLink"><span class="iconfont list-icon">&#xe62f;</span>商户</li> -->
       <router-link tag="li" to="/" class="list"><span class="iconfont list-icon">&#xe627;</span>首页</router-link>
     </ul>
   </div>
@@ -146,7 +146,7 @@ export default {
         font-size: .4rem
     .header-float
       width: 1.2rem
-      height: 2.8rem
+      height: 2.1rem
       padding: .2rem .3rem
       border-radius: .08rem
       background: $grayColor
