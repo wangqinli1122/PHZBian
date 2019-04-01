@@ -1,9 +1,9 @@
 <template>
   <div>
-    <collect-header @switchShow="handleSwitchShow"></collect-header>
+    <collect-header></collect-header>
     <div class="title"></div>
-    <collect-shops :list="shopsList" @delShop="handleDelShop" v-show="isListShow"></collect-shops>
-    <collect-goods :list="goodsList" @delGoods="handleDelGoods" v-show="!isListShow"></collect-goods>
+    <collect-shops :list="shopsList" @delShop="handleDelShop" v-show="this.$store.state.isCollectShow"></collect-shops>
+    <collect-goods :list="goodsList" @delGoods="handleDelGoods" v-show="!this.$store.state.isCollectShow"></collect-goods>
   </div>
 </template>
 
@@ -22,8 +22,7 @@ export default {
   data () {
     return {
       shopsList: [],
-      goodsList: [],
-      isListShow: true
+      goodsList: []
     }
   },
   methods: {
@@ -92,13 +91,6 @@ export default {
           this.getGoodsList()
         }
       })
-    },
-    handleSwitchShow (status) {
-      if (status) {
-        this.isListShow = true
-      } else {
-        this.isListShow = false
-      }
     }
   },
   computed: {

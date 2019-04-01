@@ -5,8 +5,8 @@
         <span class="iconfont back-icon">&#xe617;</span>
       </router-link>
       <div class="header-center">
-        <span :class="{ nav: hasNav, active: isActive}" @click="handleSwitch">店铺</span>
-        <span :class="{ nav: hasNav, active: !isActive}" @click="handleSwitch">商品</span>
+        <span :class="{ nav: hasNav, active: this.$store.state.isCollectShow}" @click="handleSwitch">店铺</span>
+        <span :class="{ nav: hasNav, active: !this.$store.state.isCollectShow}" @click="handleSwitch">商品</span>
       </div>
     </div>
   </div>
@@ -17,15 +17,17 @@ export default {
   name: 'CollectHeader',
   data () {
     return {
-      hasNav: true,
-      isActive: true
+      hasNav: true
     }
   },
   methods: {
     handleSwitch (e) {
       if (e.target.className.indexOf('active') < 0) {
-        this.isActive === true ? this.isActive = false : this.isActive = true
-        this.$emit('switchShow', this.isActive)
+        if (this.$store.state.isCollectShow === true) {
+          this.$store.commit('changeShowCollect', false)
+        } else {
+          this.$store.commit('changeShowCollect', true)
+        }
       }
     }
   }

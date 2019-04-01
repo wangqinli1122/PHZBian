@@ -3,8 +3,8 @@
     <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>
     <h3 class="name">{{this.name}}</h3>
     <div class="content border-topbottom">
-      <span class="iconfont content-left border-right" @click="setMapShow">&#xe655;</span>
-      <div class="center" @click="setMapShow">
+      <span class="iconfont content-left border-right" @click="handleClickBaidu">&#xe655;</span>
+      <div class="center" @click="handleClickBaidu">
         <h4 class="title">{{this.address}}</h4>
         <p class="desc">距离我{{this.range}}</p>
       </div>

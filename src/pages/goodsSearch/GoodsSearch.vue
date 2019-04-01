@@ -73,7 +73,7 @@ export default {
       this.showShareValue = value
     },
     getSearchName (value) {
-      this.shopName = value
+      this.goodsName = value
       this.goods = []
       this.getGoodsList()
     },

@@ -5,7 +5,7 @@
     </router-link>
     <div class="header-search">
       <input type="text" class="header-search-input" ref="nameInput" @keyup.enter="enterSearchName">
-      <span class="iconfont back-icon">&#xe6aa;</span>
+      <span class="iconfont back-icon" @click="enterSearchName">&#xe6aa;</span>
     </div>
     <div class="header-list" @click="handleClickShowList">
       <span class="iconfont back-icon">&#xe602;</span>
@@ -87,18 +87,18 @@ export default {
       position: relative
       .header-search-input
         width: 100%
-        height: .48rem
+        height: .52rem
         padding-left: .5rem
         box-sizing: border-box
-        line-height: .48rem
+        line-height: .52rem
         border-radius: .04rem
-        font-size: .24rem
+        font-size: .28rem
         background: #fff
       .back-icon
-        font-size: .24rem
+        font-size: .32rem
         color: $grayColor
         position: absolute
-        top: .04rem
+        top: 0
         left: .08rem
     .header-list
       width: .56rem

@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'App',
-  created () {
+  mounted () {
     let loading = document.getElementById('Loading')
     if (loading != null) {
       document.body.removeChild(loading)

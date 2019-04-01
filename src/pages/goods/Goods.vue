@@ -48,7 +48,7 @@ export default {
       lat: '',
       lng: '',
       range: '',
-      mid: '',
+      mid: 0,
       isFinish: false
     }
   },

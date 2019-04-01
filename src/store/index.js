@@ -13,7 +13,8 @@ export default new Vuex.Store({
       lng: '',
       lat: ''
     },
-    showIcon: false
+    showIcon: false,
+    isCollectShow: true
   },
   mutations: {
     getLocation (state) {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     changeShowIcon (state, bool) {
       state.showIcon = bool
+    },
+    changeShowCollect (state, bool) {
+      state.isCollectShow = bool
     }
   }
 })

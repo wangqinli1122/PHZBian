@@ -5,13 +5,13 @@
     <div class="shops-box">
       <h3 class="main-title">收藏的店铺</h3>
       <house-shops :list="shopsList" @delShop="handleDelShop"></house-shops>
-      <router-link to="/collect/" class="shop-more store-more">更多···</router-link>
+      <span class="shop-more store-more" @click="switchShopCollect">更多···</span>
     </div>
     <div class="cutoff border-bottom"></div>
     <div class="shops-box">
       <h3 class="main-title">收藏的商品</h3>
       <house-goods :list="goodsList" @delGoods="handleDelGoods"></house-goods>
-      <router-link to="/collect/" class="goods-more store-more">更多···</router-link>
+      <span class="goods-more store-more" @click="switchGoodsCollect">更多···</span>
     </div>
   </div>
 </template>
@@ -106,6 +106,14 @@ export default {
           this.getGoodsList()
         }
       })
+    },
+    switchGoodsCollect () {
+      this.$store.commit('changeShowCollect', false)
+      this.$router.push('/collect/')
+    },
+    switchShopCollect () {
+      this.$store.commit('changeShowCollect', true)
+      this.$router.push('/collect/')
     }
   },
   mounted () {

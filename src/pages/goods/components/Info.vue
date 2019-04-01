@@ -12,7 +12,7 @@
     <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
       <router-link :to="'/Shops/'+ this.mid" tag="span" class="iconfont content-left border-right">&#xe633;</router-link>
-      <div class="center"  @click="setMapShow">
+      <div class="center"  @click="handleClickBaidu">
         <h4 class="title">{{this.gName}}</h4>
         <p class="desc">{{this.sAddr}}</p>
       </div>
@@ -50,7 +50,7 @@ export default {
     lat: String,
     lng: String,
     range: String,
-    mid: String,
+    mid: Number,
     isFinish: Boolean
   },
   data () {
