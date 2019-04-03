@@ -54,7 +54,7 @@ export default {
     },
     handleClickBaidu () {
       if (localStorage.lng) {
-        window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + localStorage.lat + ',' + localStorage.lng + '|name:我的位置&destination=latlng:' + this.lat + ',' + this.lng + '|name:' + this.sAddr + '&mode=driving&region=成都&output=html&src=webapp.baidu.openAPIdemo'
+        window.location.href = 'http://api.map.baidu.com/direction?origin=latlng:' + localStorage.lat + ',' + localStorage.lng + '|name:我的位置&destination=latlng:' + this.lat + ',' + this.lng + '|name:' + this.address + '&mode=driving&region=成都&output=html&src=webapp.baidu.openAPIdemo'
       }
     },
     handleStore () {
