@@ -12,6 +12,7 @@
       :lat="lat"
       :lng="lng"
       :range="range"
+      :unit="unit"
       :mid="mid"
       :isFinish="isFinish"
       @handleStoreUp="storeUp"
@@ -48,6 +49,7 @@ export default {
       lat: '',
       lng: '',
       range: '',
+      unit: '',
       mid: 0,
       isFinish: false
     }
@@ -69,6 +71,7 @@ export default {
         this.shopAddress = data.shopAddress
         this.shopTel = data.shopTel
         this.goodsname = data.goodsname
+        this.unit = data.unit
         this.goodsprice = data.goodsprice
         this.goodsimg = data.goodsimg
         for (var i = 0; i < this.goodsimg.length; i++) {
@@ -120,6 +123,7 @@ export default {
         price: this.goodsprice,
         lng: this.lng,
         lat: this.lat,
+        unit: this.unit,
         range: 0
       }
       goods.push(goodsInfo)

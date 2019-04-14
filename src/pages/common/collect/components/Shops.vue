@@ -70,11 +70,11 @@ export default {
       .del
         float: left
         font-size: .26rem
-        line-height: 1.4rem
+        line-height: 2rem
         color: $bgColor
       .img-box
-        width: 1.4rem
-        height: 1.4rem
+        width: 2rem
+        height: 2rem
         float: left
         margin: 0 .15rem
         overflow: hidden
@@ -89,22 +89,22 @@ export default {
           display: flex
           .title
             flex: 1
-            line-height: .4rem
+            line-height: .6rem
             font-size: .32rem
             color: #333
             ellipsis()
           .back-icon
             color: $grayColor
         .content
-          height: .5rem
-          line-height: .5rem
+          height: .6rem
+          line-height: .6rem
           color: $grayColor
           ellipsis()
         .range
           color: $grayColor
-          padding-top: .13rem
+          padding-top: .4rem
       .details
-        line-height: 1.4rem
+        line-height: 2rem
         float: right
         font-size: .36rem
         color: $grayColor

@@ -13,6 +13,7 @@
         <p class="content">{{item.address}}</p>
         <div class="range">
           <span class="range-left">¥</span>{{item.price}}
+          <span class="range-unit">单位：{{item.unit}}</span>
           <div class="range-right">
             <span class="iconfont">&#xe655;</span>
             <span>{{item.range}}</span>
@@ -74,11 +75,11 @@ export default {
       .del
         float: left
         font-size: .26rem
-        line-height: 1.4rem
+        line-height: 2rem
         color: $bgColor
       .img-box
-        width: 1.4rem
-        height: 1.4rem
+        width: 2rem
+        height: 2rem
         float: left
         margin: 0 .15rem
         overflow: hidden
@@ -93,24 +94,29 @@ export default {
           display: flex
           .title
             flex: 1
-            line-height: .4rem
+            line-height: .6rem
             font-size: .32rem
             ellipsis()
           .back-icon
             float:right
             color: $grayColor
         .content
-          height: .5rem
-          line-height: .5rem
+          height: .6rem
+          line-height: .6rem
           color: $grayColor
           ellipsis()
         .range
           color: red
           font-size: .32rem
-          padding-top: 0.1rem
+          padding-top: 0.4rem
           font-weight: bold
           .range-left
             font-size: .25rem
+          .range-unit
+            color: #333
+            margin-left: .1rem
+            font-size: .28rem
+            font-weight: normal
           .range-right
             float: right
             color: $grayColor
@@ -119,7 +125,7 @@ export default {
             .back-icon
               padding-right: .05rem
       .details
-        line-height: 1.2rem
+        line-height: 2rem
         float: right
         font-size: .18rem
         color: $grayColor

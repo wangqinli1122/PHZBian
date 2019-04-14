@@ -111,7 +111,7 @@ export default {
     margin-top: 1.4rem
     text-align: center
     .logo
-      width: 3.8rem
+      width: 3rem
       margin-bottom: 1rem
     .search-box
       position: relative

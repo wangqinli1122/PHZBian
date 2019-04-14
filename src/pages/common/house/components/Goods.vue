@@ -13,6 +13,7 @@
         <p class="content">{{item.address}}</p>
         <div class="range">
           <span class="range-left">¥</span>{{item.price}}
+          <span class="range-unit">单位：{{item.unit}}</span>
           <div class="range-right">
             <span class="iconfont">&#xe655;</span>
             <span>{{item.range}}</span>
@@ -111,6 +112,11 @@ export default {
           font-weight: bold
           .range-left
             font-size: .25rem
+          .range-unit
+            color: #333
+            margin-left: .1rem
+            font-size: .28rem
+            font-weight: normal
           .range-right
             float: right
             color: $grayColor

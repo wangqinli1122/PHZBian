@@ -2,6 +2,7 @@
   <div class="info">
     <div class="range">
       <span class="range-left">¥</span>{{this.goodsprice}}
+      <span class="range-unit">单位：{{this.unit}}</span>
       <div class="range-right">
         <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>收藏
         <span class="iconfont back-icon" style="padding-left: .2rem">&#xe655;</span>{{this.range}}
@@ -43,6 +44,7 @@ export default {
   props: {
     sName: String,
     sAddr: String,
+    unit: String,
     sTel: String,
     gName: String,
     content: String,
@@ -133,6 +135,11 @@ export default {
     padding: .2rem
     .range-left
       font-size: .32rem
+    .range-unit
+      color: #333
+      margin-left: .1rem
+      font-size: .28rem
+      font-weight: normal
     .range-right
       float: right
       color: $grayColor
