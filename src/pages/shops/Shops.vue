@@ -40,7 +40,8 @@ export default {
       showShareValue: '',
       lng: '',
       lat: '',
-      isFinish: false
+      isFinish: false,
+      isFirstEnter: false
     }
   },
   components: {
@@ -148,13 +149,33 @@ export default {
       this.goodsName = ''
     }
   },
-  mounted () {
-    if (this.$store.state.addr.lng) {
-      this.getShopInfo()
-      this.goodsName = ''
-    } else {
-      this.$store.commit('getLocation')
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'Goods') {
+      to.meta.isBack = true
     }
+    next()
+  },
+  created () {
+    this.isFirstEnter = true
+  },
+  activated () {
+    if (!this.$route.meta.isBack || this.isFirstEnter) {
+      this.goods = []
+      this.shopName = ''
+      this.shopAddress = ''
+      this.shopTel = ''
+      this.shopImg = ''
+      this.lng = ''
+      this.lat = ''
+      if (this.$store.state.addr.lng) {
+        this.getShopInfo()
+        this.goodsName = ''
+      } else {
+        this.$store.commit('getLocation')
+      }
+    }
+    this.$route.meta.isBack = false
+    this.isFirstEnter = false
   }
 }
 </script>

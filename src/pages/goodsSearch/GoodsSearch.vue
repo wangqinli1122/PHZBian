@@ -23,7 +23,8 @@ export default {
       showShareValue: '',
       goodsName: '',
       page: 1,
-      non: false
+      non: false,
+      isFirstEnter: false
     }
   },
   components: {
@@ -82,10 +83,24 @@ export default {
       this.getGoodsList()
     }
   },
-  mounted () {
-    this.goodsName = this.$route.params.name
-    this.page = this.$route.params.page
-    this.getGoodsList()
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'Goods') {
+      to.meta.isBack = true
+    }
+    next()
+  },
+  created () {
+    this.isFirstEnter = true
+  },
+  activated () {
+    if (!this.$route.meta.isBack || this.isFirstEnter) {
+      this.goods = []
+      this.goodsName = this.$route.params.name
+      this.page = this.$route.params.page
+      this.getGoodsList()
+    }
+    this.$route.meta.isBack = false
+    this.isFirstEnter = false
   }
 }
 </script>
