@@ -20,25 +20,34 @@ export default new Router({
     {
       path: '/shops/:id',
       name: 'Shops',
-      component: Shops
+      component: Shops,
+      meta: {
+        keepAlive: true,
+        isBack: false
+      }
     },
     {
       path: '/goods/:id',
       name: 'Goods',
-      component: Goods,
-      meta: {
-        keepAlive: true
-      }
+      component: Goods
     },
     {
       path: '/shopSearch/:name/:lat/:lng/:page',
       name: 'ShopSearch',
-      component: ShopSearch
+      component: ShopSearch,
+      meta: {
+        keepAlive: true,
+        isBack: false
+      }
     },
     {
       path: '/goodsSearch/:name/:lat/:lng/:page',
       name: 'GoodsSearch',
-      component: GoodsSearch
+      component: GoodsSearch,
+      meta: {
+        keepAlive: true,
+        isBack: false
+      }
     },
     {
       path: '/collect/',
