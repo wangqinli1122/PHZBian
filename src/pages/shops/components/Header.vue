@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <router-link to="/" class="header-left">
+    <router-link to="" class="header-left" @click.native="$router.back(-1)">
       <span class="iconfont back-icon">&#xe617;</span>
     </router-link>
     <div class="header-search">
