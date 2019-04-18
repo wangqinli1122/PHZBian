@@ -10,7 +10,7 @@
             <h4 class="title">{{item.name}}</h4>
             <span class="iconfont back-icon" v-show="isShowTel">&#xe60f;</span>
           </div>
-          <p class="content">{{item.desc}}</p>
+          <!-- <p class="content">{{item.desc}}</p> -->
           <div class="range">
             <span class="range-left">¥</span>{{item.price}}
             <span class="range-unit">单位：{{item.unit}}</span>
@@ -91,9 +91,11 @@ export default {
           display: flex
           .title
             flex: 1
-            line-height: .6rem
+            height: 1rem
+            margin-bottom: .2rem
+            line-height: .5rem
             font-size: .32rem
-            ellipsis()
+            ellipsisTwo()
           .back-icon
             float:right
             color: $grayColor
