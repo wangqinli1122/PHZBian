@@ -8,7 +8,7 @@
         <span class="iconfont back-icon" style="padding-left: .2rem">&#xe655;</span>{{this.range}}
       </div>
     </div>
-    <h3 class="name">{{this.sName}}</h3>
+    <h3 class="name" style="-webkit-box-orient: vertical;">{{this.sName}}</h3>
     <p class="goodsDesc">外套男士</p>
     <div class="cutoff border-bottom"></div>
     <div class="content border-topbottom">
@@ -155,9 +155,10 @@ export default {
         font-size: .35rem
   .name
     font-size: .32rem
+    line-height: .36rem
     font-weight: bold
-    padding: .1rem .2rem .2rem
-    ellipsis()
+    margin: .1rem .2rem .2rem
+    ellipsisTwo()
   .goodsDesc
     line-height: .36rem
     padding: .2rem

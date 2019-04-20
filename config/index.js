@@ -10,9 +10,17 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
+    /*proxyTable: {
       "/home": {
         target: 'http://souzhoub.com/',
+      }
+    },*/
+    proxyTable: {
+      "/api": {
+        target: 'http://localhost:8080/',
+        pathRewrite: { 
+            '^/api': '/static/json'
+        }, 
       }
     },
 

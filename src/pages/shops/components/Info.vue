@@ -1,7 +1,7 @@
 <template>
   <div class="info">
     <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>
-    <h3 class="name">{{this.name}}</h3>
+    <h3 class="name" style="-webkit-box-orient: vertical;">{{this.name}}</h3>
     <div class="content border-topbottom">
       <span class="iconfont content-left border-right" @click="handleClickBaidu">&#xe655;</span>
       <div class="center" @click="handleClickBaidu">

@@ -34,7 +34,8 @@ export default {
       showShareValue: '',
       page: 1,
       non: false,
-      isShowSwiper: 1
+      isShowSwiper: 1,
+      isFirstEnter: false
     }
   },
   components: {
@@ -106,12 +107,25 @@ export default {
       this.getHomeInfo()
     }
   },
-  mounted () {
-    if (this.$store.state.addr.lng) {
-      this.getHomeInfo()
-    } else {
-      this.$store.commit('getLocation')
+  beforeRouteEnter (to, from, next) {
+    if (from.name === 'Shops') {
+      to.meta.isBack = true
     }
+    next()
+  },
+  created () {
+    this.isFirstEnter = true
+  },
+  activated () {
+    if (!this.$route.meta.isBack || this.isFirstEnter) {
+      if (this.$store.state.addr.lng) {
+        this.getHomeInfo()
+      } else {
+        this.$store.commit('getLocation')
+      }
+    }
+    this.$route.meta.isBack = false
+    this.isFirstEnter = false
   }
 }
 </script>

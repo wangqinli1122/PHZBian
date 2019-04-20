@@ -95,7 +95,11 @@ export default {
             margin-bottom: .2rem
             line-height: .5rem
             font-size: .32rem
-            ellipsisTwo()
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
           .back-icon
             float:right
             color: $grayColor

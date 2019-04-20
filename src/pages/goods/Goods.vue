@@ -56,7 +56,8 @@ export default {
   },
   methods: {
     getGoodsInfo () {
-      axios.get('/home/index/getShopInfo', {
+      // axios.get('/home/index/getShopInfo', {
+      axios.get('/api/getShopInfo.json', {
         params: {
           id: this.$route.params.id
         }
