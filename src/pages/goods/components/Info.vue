@@ -2,7 +2,7 @@
   <div class="info">
     <div class="range">
       <span class="range-left">¥</span>{{this.goodsprice}}
-      <span class="range-unit">单位：{{this.unit}}</span>
+      <span class="range-unit">单位/{{this.unit}}</span>
       <div class="range-right">
         <span :class="{ iconfont: true, store_up: true, store_finish: this.isFinish}" @click="handleStore">&#xe687;</span>收藏
         <span class="iconfont back-icon" style="padding-left: .2rem">&#xe655;</span>{{this.range}}
