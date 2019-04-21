@@ -82,10 +82,10 @@ export default {
     this.$emit('showShare', this.isShowShare)
   },
   activated () {
-    window.addEventListener('scroll', this.handleScroll)
+    // window.addEventListener('scroll', this.handleScroll)
   },
   deactivated () {
-    window.removeEventListener('scroll', this.handleScroll)
+    // window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

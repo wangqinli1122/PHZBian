@@ -105,6 +105,7 @@ export default {
   watch: {
     getLocationPage (cur, old) {
       this.shops = []
+      this.page = 1
       this.getHomeInfo()
     }
   },
@@ -121,6 +122,7 @@ export default {
     if (!this.$route.meta.isBack || this.isFirstEnter) {
       if (this.$store.state.addr.lng) {
         this.shops = []
+        this.page = 1
         this.getHomeInfo()
       } else {
         this.$store.commit('getLocation')
