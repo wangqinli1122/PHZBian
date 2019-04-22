@@ -13,7 +13,7 @@
           <!-- <p class="content">{{item.desc}}</p> -->
           <div class="range">
             <span class="range-left">¥</span>{{item.price}}
-            <span class="range-unit">单位/{{item.unit}}</span>
+            <span class="range-unit">元/{{item.unit}}</span>
             <div class="range-right">
               <span class="iconfont back-icon">&#xe603;</span>{{item.see}}
             </div>
